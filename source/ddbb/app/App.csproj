@@ -108,9 +108,9 @@
       <Project>{6131ef8d-6642-478e-9f1b-e9818014d386}</Project>
       <Name>Shell</Name>
     </ProjectReference>
-    <ProjectReference Include="..\components\tabManager\TabManager.csproj">
+    <ProjectReference Include="..\components\viewManager\ViewManager.csproj">
       <Project>{ea167901-a0c1-4f7a-8f9d-d4d15eb5ca50}</Project>
-      <Name>TabManager</Name>
+      <Name>ViewManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\contracts\Contracts.csproj">
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>

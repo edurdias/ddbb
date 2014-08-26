@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "components\shell\Shell.csproj", "{6131EF8D-6642-478E-9F1B-E9818014D386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabManager", "components\tabManager\TabManager.csproj", "{EA167901-A0C1-4F7A-8F9D-D4D15EB5CA50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewManager", "components\viewManager\ViewManager.csproj", "{EA167901-A0C1-4F7A-8F9D-D4D15EB5CA50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
