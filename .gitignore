@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -10,3 +10,15 @@
 /Ddbb/Ddbb.Data/obj/Debug
 /Ddbb/Ddbb.Data.Tests/bin/Debug
 /Ddbb/Ddbb.Data.Tests/obj/Debug
+source/ddbb/components/tabManager/bin/
+source/ddbb/components/tabManager/obj/
+source/ddbb/components/shell/obj/
+source/ddbb/components/shell/bin/
+source/ddbb/components/dbExplorer/obj/
+source/ddbb/contracts/bin/
+source/ddbb/contracts/obj/
+source/ddbb/app/obj/
+source/ddbb/components/dbExplorer/bin/
+source/ddbb/packages/
+source/ddbb/app/bin/
+*.suo
