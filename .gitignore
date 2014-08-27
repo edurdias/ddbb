@@ -24,3 +24,7 @@ source/ddbb/app/bin/
 *.suo
 /source/ddbb/components/viewManager/bin/Debug
 /source/ddbb/components/viewManager/obj/Debug
+/source/ddbb/data/dataContracts/bin/Debug
+/source/ddbb/data/dataContracts/obj/Debug
+/source/ddbb/data/documentDb/bin/Debug
+/source/ddbb/data/documentDb/obj/Debug
