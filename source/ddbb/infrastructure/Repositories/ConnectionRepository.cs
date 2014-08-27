@@ -1,31 +1,45 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Repositories;
+using ddbb.App.Domain;
 
 namespace ddbb.App.Infrastructure.Repositories
 {
 	[Export(typeof(IConnectionRepository))]
 	public class ConnectionRepository : IConnectionRepository
 	{
+		[ImportingConstructor]
+		public ConnectionRepository()
+		{
+			Context = new SqLiteDbContext();
+		}
+
+		private SqLiteDbContext Context { get; set; }
+
 		public IEnumerable<IConnection> All()
 		{
-			return new List<IConnection>();
+			return Context.Connections;
 		}
 
-		public void Add(List<IConnection> items)
+		public void Add(IEnumerable<IConnection> items)
 		{
-			throw new System.NotImplementedException();
+			Context.Connections.AddRange(items.OfType<Connection>());
+			Context.SaveChanges();
 		}
 
-		public void Remove(List<IConnection> items)
+		public void Remove(IEnumerable<IConnection> items)
 		{
-			throw new System.NotImplementedException();
+			Context.Connections.RemoveRange(items.OfType<Connection>());
+			Context.SaveChanges();
 		}
 
-		public void Update(Dictionary<IConnection, IConnection> items)
+		public void Update(IEnumerable<IConnection> items)
 		{
-			throw new System.NotImplementedException();
+			foreach (var connection in items)
+				Context.Connections.Attach((Connection) connection);
+			Context.SaveChanges();
 		}
 	}
 

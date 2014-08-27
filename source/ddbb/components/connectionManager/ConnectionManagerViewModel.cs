@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.ComponentModel.Composition;
 using System.Linq;
 using Caliburn.Micro;
@@ -24,16 +22,13 @@ namespace ddbb.App.Components.ConnectionManager
 				switch (args.Action)
 				{
 					case NotifyCollectionChangedAction.Add:
-						repository.Add(args.NewItems.OfType<IConnection>().ToList());
+						repository.Add(args.NewItems.OfType<IConnection>());
 						break;
 					case NotifyCollectionChangedAction.Remove:
-						repository.Remove(args.OldItems.OfType<IConnection>().ToList());
+						repository.Remove(args.OldItems.OfType<IConnection>());
 						break;
 					case NotifyCollectionChangedAction.Replace:
-						var items = new Dictionary<IConnection, IConnection>();
-						for (var i = 0; i < args.OldStartingIndex; i++)
-							items.Add((IConnection)args.OldItems[i], (IConnection)args.NewItems[i]);
-						repository.Update(items);
+						repository.Update(args.NewItems.OfType<IConnection>());
 						break;
 				}
 			};

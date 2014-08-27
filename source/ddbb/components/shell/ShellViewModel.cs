@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Dynamic;
 using System.Windows;
 using Caliburn.Micro;
-using ddbb.App.Contracts;
 using ddbb.App.Contracts.ViewModels;
 
 namespace ddbb.App.Components.Shell
