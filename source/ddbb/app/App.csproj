@@ -120,6 +120,14 @@
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\domain\Domain.csproj">
+      <Project>{a9d6f9b4-5993-4b77-9548-311b11d19b42}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\infrastructure\Infrastructure.csproj">
+      <Project>{ff25b6f1-f128-4019-92ba-8e5ed41a29ff}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.Composition;
-using System.Windows.Documents;
+using System.Linq;
 using Caliburn.Micro;
+using ddbb.App.Contracts.Domain;
+using ddbb.App.Contracts.Repositories;
 using ddbb.App.Contracts.ViewModels;
 
 namespace ddbb.App.Components.ConnectionManager
@@ -9,18 +13,33 @@ namespace ddbb.App.Components.ConnectionManager
 	[Export(typeof(IConnectionManagerViewModel))]
 	public class ConnectionManagerViewModel : Screen, IConnectionManagerViewModel
 	{
-		private IObservableCollection<Connection> connections;
+		private IObservableCollection<IConnection> connections;
 
-		public ConnectionManagerViewModel()
+		[ImportingConstructor]
+		public ConnectionManagerViewModel(IConnectionRepository repository)
 		{
-			// creating a Mock of connections
-			Connections = new BindableCollection<Connection>(new List<Connection>
+			Connections = new BindableCollection<IConnection>(repository.All());
+			Connections.CollectionChanged += (sender, args) =>
 			{
-				new Connection { Name = "local", EndpointUrl = "localhost", AuthorizationKey = "development" }
-			});
+				switch (args.Action)
+				{
+					case NotifyCollectionChangedAction.Add:
+						repository.Add(args.NewItems.OfType<IConnection>().ToList());
+						break;
+					case NotifyCollectionChangedAction.Remove:
+						repository.Remove(args.OldItems.OfType<IConnection>().ToList());
+						break;
+					case NotifyCollectionChangedAction.Replace:
+						var items = new Dictionary<IConnection, IConnection>();
+						for (var i = 0; i < args.OldStartingIndex; i++)
+							items.Add((IConnection)args.OldItems[i], (IConnection)args.NewItems[i]);
+						repository.Update(items);
+						break;
+				}
+			};
 		}
 
-		public IObservableCollection<Connection> Connections
+		public IObservableCollection<IConnection> Connections
 		{
 			get { return connections; }
 			set

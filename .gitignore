@@ -26,3 +26,7 @@ source/ddbb/app/bin/
 /source/ddbb/components/viewManager/obj/Debug
 /source/ddbb/components/connectionManager/bin/Debug
 /source/ddbb/components/connectionManager/obj/Debug
+/source/ddbb/domain/bin/Debug
+/source/ddbb/domain/obj/Debug
+/source/ddbb/infrastructure/bin/Debug
+/source/ddbb/infrastructure/obj/Debug

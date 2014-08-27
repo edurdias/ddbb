@@ -63,7 +63,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Connection.cs" />
     <Compile Include="ConnectionManagerView.xaml.cs">
       <DependentUpon>ConnectionManagerView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -99,6 +98,10 @@
     <ProjectReference Include="..\..\contracts\Contracts.csproj">
       <Project>{D3E0D7F8-132F-4419-BF49-38600F5555F2}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\domain\Domain.csproj">
+      <Project>{A9D6F9B4-5993-4B77-9548-311B11D19B42}</Project>
+      <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
