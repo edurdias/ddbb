@@ -24,3 +24,5 @@ source/ddbb/app/bin/
 *.suo
 /source/ddbb/components/viewManager/bin/Debug
 /source/ddbb/components/viewManager/obj/Debug
+/source/ddbb/components/connectionManager/bin/Debug
+/source/ddbb/components/connectionManager/obj/Debug

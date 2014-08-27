@@ -38,9 +38,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDbExplorer.cs" />
-    <Compile Include="IViewManager.cs" />
-    <Compile Include="IShell.cs" />
+    <Compile Include="ViewModels\IConnectionManagerViewModel.cs" />
+    <Compile Include="ViewModels\IDbExplorer.cs" />
+    <Compile Include="ViewModels\IShell.cs" />
+    <Compile Include="ViewModels\IViewManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

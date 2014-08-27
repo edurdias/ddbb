@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ddbb.App.Components.TabManager
+namespace ddbb.App.Components.ViewManager
 {
     public partial class ViewManagerView : UserControl
     {
