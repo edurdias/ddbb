@@ -30,3 +30,4 @@ source/ddbb/app/bin/
 /source/ddbb/domain/obj/Debug
 /source/ddbb/infrastructure/bin/Debug
 /source/ddbb/infrastructure/obj/Debug
+*.DotSettings

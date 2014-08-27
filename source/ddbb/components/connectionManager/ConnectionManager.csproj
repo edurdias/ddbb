@@ -67,9 +67,17 @@
       <DependentUpon>ConnectionManagerView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="CreateConnectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionManagerViewModel.cs" />
+    <Compile Include="CreateConnectionView.xaml.cs">
+      <DependentUpon>CreateConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateConnectionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

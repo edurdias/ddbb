@@ -1,6 +1,8 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Windows;
 using Caliburn.Micro;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Repositories;
@@ -12,10 +14,12 @@ namespace ddbb.App.Components.ConnectionManager
 	public class ConnectionManagerViewModel : Screen, IConnectionManagerViewModel
 	{
 		private IObservableCollection<IConnection> connections;
+		private IConnection selectedConnection;
 
 		[ImportingConstructor]
-		public ConnectionManagerViewModel(IConnectionRepository repository)
+		public ConnectionManagerViewModel(IWindowManager windowManager, IConnectionRepository repository)
 		{
+			WindowManager = windowManager;
 			Connections = new BindableCollection<IConnection>(repository.All());
 			Connections.CollectionChanged += (sender, args) =>
 			{
@@ -34,6 +38,8 @@ namespace ddbb.App.Components.ConnectionManager
 			};
 		}
 
+		private IWindowManager WindowManager { get; set; }
+
 		public IObservableCollection<IConnection> Connections
 		{
 			get { return connections; }
@@ -43,6 +49,64 @@ namespace ddbb.App.Components.ConnectionManager
 				connections = value;
 				NotifyOfPropertyChange(()=> Connections);
 			}
+		}
+
+		public IConnection SelectedConnection
+		{
+			get { return selectedConnection; }
+			set
+			{
+				selectedConnection = value;
+				NotifyOfPropertyChange(() => SelectedConnection);
+				Refresh();
+			}
+		}
+
+		public bool CanModify
+		{
+			get
+			{
+				return SelectedConnection != null;
+			}
+		}
+
+		public bool CanRemove
+		{
+			get
+			{
+				return SelectedConnection != null;
+			}
+		}
+
+		public bool CanCopy
+		{
+			get
+			{
+				return SelectedConnection != null;
+			}
+		}
+
+		public void Create()
+		{
+			WindowManager.ShowDialog(new CreateConnectionViewModel(), null, new Dictionary<string, object>
+			{
+				{"ResizeMode", ResizeMode.NoResize}
+			});
+		}
+
+		public void Modify()
+		{
+			MessageBox.Show("modify");
+		}
+
+		public void Remove()
+		{
+			MessageBox.Show("remove");
+		}
+
+		public void Copy()
+		{
+			MessageBox.Show("copy");
 		}
 	}
 }
