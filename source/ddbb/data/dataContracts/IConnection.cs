@@ -6,7 +6,5 @@ namespace ddbb.App.Data.DataContracts
 		string Url { get; set; }
 
 		string Key { get; set; }
-
-		string Database { get; set; }
     }
 }

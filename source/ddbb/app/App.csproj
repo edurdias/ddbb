@@ -116,14 +116,6 @@
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\data\dataContracts\DataContracts.csproj">
-      <Project>{3779eaaa-fc1a-47ab-948b-ed589bdebd59}</Project>
-      <Name>DataContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\data\documentDb\DocumentDb.csproj">
-      <Project>{d08abaea-4bca-4fdc-80ae-ddd7478c3aa5}</Project>
-      <Name>DocumentDb</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

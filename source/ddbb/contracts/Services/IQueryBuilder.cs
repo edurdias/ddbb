@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 
-namespace ddbb.App.Data.DataContracts
+namespace ddbb.App.Contracts.Services
 {
 	public interface IQueryBuilder
 	{

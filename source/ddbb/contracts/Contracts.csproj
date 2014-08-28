@@ -40,10 +40,18 @@
   <ItemGroup>
     <Compile Include="Domain\IConnection.cs" />
     <Compile Include="Repositories\IConnectionRepository.cs" />
+    <Compile Include="Services\IDatabaseConnection.cs" />
+    <Compile Include="Services\IDocumentDbService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Services\IQueryBuilder.cs" />
     <Compile Include="ViewModels\IConnectionManagerViewModel.cs" />
     <Compile Include="ViewModels\IDbExplorer.cs" />
     <Compile Include="ViewModels\IShell.cs" />
     <Compile Include="ViewModels\IViewManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

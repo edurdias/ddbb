@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using ddbb.App.Data.DataContracts;
+using ddbb.App.Contracts.Domain;
+using ddbb.App.Contracts.Services;
 
-namespace ddbb.App.Data.DocumentDb
+namespace ddbb.App.Services.DocumentDb
 {
 	[Export(typeof(IQueryBuilder))]
 	public class DocumentDbQueryBuilder : IQueryBuilder
@@ -11,35 +12,29 @@ namespace ddbb.App.Data.DocumentDb
 		private string _collection;
 		private string _sqlStatement;
 
-		public DocumentDbQueryBuilder(IQueryExecutor executor, IConnection connection)
+		public DocumentDbQueryBuilder(IDocumentDbService service, IConnection connection)
 		{
-			Executor = executor;
+			Service = service;
 			Connection = connection;
 		}
 
-		protected IQueryExecutor Executor { get; set; }
+		protected IDocumentDbService Service { get; set; }
 
 		protected IConnection Connection { get; private set; }
 
-		string IQueryBuilder.Collection
+		string IQueryBuilder.GetCollection()
 		{
-			get
-			{
-				return _collection;
-			}
+			return _collection;
 		}
 
-		string IQueryBuilder.SqlStatement
+		string IQueryBuilder.GetSqlStatement()
 		{
-			get
-			{
-				return _sqlStatement;
-			}
+			return _sqlStatement;
 		}
 
-		IConnection IQueryBuilder.GetConnection()
+		IDatabaseConnection IQueryBuilder.GetDatabaseConnection()
 		{
-			return Connection;
+			return (IDatabaseConnection)Connection;
 		}
 
 		public IQueryBuilder Using(string collection)
@@ -52,7 +47,7 @@ namespace ddbb.App.Data.DocumentDb
 		public async Task<IQueryable<dynamic>> Execute(string sql)
 		{
 			_sqlStatement = sql;
-			return await Executor.Execute(this);
+			return await Service.Execute(this);
 		}
 	}
 }

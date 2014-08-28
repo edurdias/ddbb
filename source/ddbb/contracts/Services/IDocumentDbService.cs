@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ddbb.App.Contracts.Domain;
 
-namespace ddbb.App.Data.DataContracts
+namespace ddbb.App.Contracts.Services
 {
-	public interface IQueryExecutor
+	public interface IDocumentDbService
 	{
 		IQueryBuilder CreateBuilder(IDatabaseConnection connection);
 
