@@ -7,10 +7,10 @@ namespace ddbb.App.Contracts.Repositories
 	{
 		IEnumerable<IConnection> All();
 
-		void Add(IEnumerable<IConnection> items);
+		void Add(IConnection connection); 
+		
+		void Update(IConnection connection);
 
-		void Remove(IEnumerable<IConnection> items);
-
-		void Update(IEnumerable<IConnection> items);
+		void Remove(IConnection connection);
 	}
 }

@@ -69,7 +69,7 @@ namespace ddbb.App.Data.DocumentDb
 				{
 					return client.CreateDocumentQuery(collection.SelfLink, queryBuilder.SqlStatement);
 				});
-			}
+			}	
 		}
 
 		public Task<IQueryable<dynamic>> GetDatabases(IConnection connection)
