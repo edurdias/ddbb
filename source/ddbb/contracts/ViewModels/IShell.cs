@@ -1,4 +1,4 @@
-namespace ddbb.App.Contracts
+namespace ddbb.App.Contracts.ViewModels
 {
 	public interface IShell
 	{

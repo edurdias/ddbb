@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.ComponentModel.Composition.Primitives;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
 using Caliburn.Micro;
-using ddbb.App.Contracts;
+using ddbb.App.Contracts.ViewModels;
 
 namespace ddbb.App
 {
@@ -73,6 +72,7 @@ namespace ddbb.App
 			MapNamespacesFor<IShell>();
 			MapNamespacesFor<IDbExplorer>();
 			MapNamespacesFor<IViewManager>();
+			MapNamespacesFor<IConnectionManagerViewModel>();
 		}
 
 		protected override IEnumerable<Assembly> SelectAssemblies()
@@ -82,6 +82,7 @@ namespace ddbb.App
 			assemblies.AddRange(GetAssembliesFor<IShell>());
 			assemblies.AddRange(GetAssembliesFor<IDbExplorer>());
 			assemblies.AddRange(GetAssembliesFor<IViewManager>());
+			assemblies.AddRange(GetAssembliesFor<IConnectionManagerViewModel>());
 			return assemblies;
 		}
 

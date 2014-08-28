@@ -28,3 +28,11 @@ source/ddbb/app/bin/
 /source/ddbb/data/dataContracts/obj/Debug
 /source/ddbb/data/documentDb/bin/Debug
 /source/ddbb/data/documentDb/obj/Debug
+source/ddbb/infrastructure/bin/
+source/ddbb/components/connectionManager/obj/
+*/obj/*
+source/ddbb/infrastructure/obj/
+source/ddbb/domain/obj/
+source/ddbb/domain/bin/
+source/ddbb/components/connectionManager/bin/
+*.DotSettings
