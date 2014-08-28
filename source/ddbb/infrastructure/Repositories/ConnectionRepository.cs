@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
+using System.Data.Entity;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Repositories;
 using ddbb.App.Domain;
 
 namespace ddbb.App.Infrastructure.Repositories
 {
+	//TODO: review usage of concrete class Connection instead of its interface (contra-variance)
 	[Export(typeof(IConnectionRepository))]
 	public class ConnectionRepository : IConnectionRepository
 	{
@@ -23,22 +24,21 @@ namespace ddbb.App.Infrastructure.Repositories
 			return Context.Connections;
 		}
 
-		public void Add(IEnumerable<IConnection> items)
+		public void Add(IConnection connection)
 		{
-			Context.Connections.AddRange(items.OfType<Connection>());
+			Context.Connections.Add((Connection)connection);
 			Context.SaveChanges();
 		}
 
-		public void Remove(IEnumerable<IConnection> items)
+		public void Update(IConnection connection)
 		{
-			Context.Connections.RemoveRange(items.OfType<Connection>());
+			Context.Entry((Connection)connection).State = EntityState.Modified;
 			Context.SaveChanges();
 		}
 
-		public void Update(IEnumerable<IConnection> items)
+		public void Remove(IConnection connection)
 		{
-			foreach (var connection in items)
-				Context.Connections.Attach((Connection) connection);
+			Context.Connections.Remove((Connection)connection);
 			Context.SaveChanges();
 		}
 	}

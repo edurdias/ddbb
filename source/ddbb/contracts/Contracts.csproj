@@ -39,19 +39,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\IConnection.cs" />
+    <Compile Include="Domain\IDatabase.cs" />
+    <Compile Include="Domain\IDbCollection.cs" />
+    <Compile Include="Domain\IDbFunction.cs" />
+    <Compile Include="Domain\IDbScript.cs" />
+    <Compile Include="Domain\IDbSproc.cs" />
+    <Compile Include="Domain\IDbTrigger.cs" />
+    <Compile Include="Domain\IDbUser.cs" />
+    <Compile Include="Events\IConnectionCreatedEvent.cs" />
+    <Compile Include="Events\IConnectionEstablishedEvent.cs" />
+    <Compile Include="Events\IConnectionUpdatedEvent.cs" />
     <Compile Include="Repositories\IConnectionRepository.cs" />
+    <Compile Include="Services\IBackendService.cs" />
     <Compile Include="Services\IDatabaseConnection.cs" />
-    <Compile Include="Services\IDocumentDbService.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Services\IDocumentDbService.cs" />
     <Compile Include="Services\IQueryBuilder.cs" />
     <Compile Include="ViewModels\IConnectionManagerViewModel.cs" />
     <Compile Include="ViewModels\IDbExplorer.cs" />
     <Compile Include="ViewModels\IShell.cs" />
     <Compile Include="ViewModels\IViewManager.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ddbb.App.Components.ConnectionManager.CreateConnectionView"
+﻿<UserControl x:Class="ddbb.App.Components.ConnectionManager.ViewConnectionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,7 +19,7 @@
             <TextBox Grid.Column="1" x:Name="AuthenticationKey"  Height="23" Margin="10,94,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         </Grid>
         <Button Content="Cancel" x:Name="Cancel" HorizontalAlignment="Left" Margin="415,148,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Save" x:Name="Save" HorizontalAlignment="Left" Margin="335,148,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="_Save" x:Name="Save" HorizontalAlignment="Left" Margin="335,148,0,0" VerticalAlignment="Top" Width="75" IsDefault="True"/>
         <Button Content="Test Connection" x:Name="TestConnection" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top" Width="116"/>
     </Grid>
 </UserControl>

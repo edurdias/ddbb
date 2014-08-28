@@ -100,6 +100,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\components\connectionManager\ConnectionManager.csproj">
+      <Project>{60dc0425-6b60-4f86-b206-ef12d845c392}</Project>
+      <Name>ConnectionManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\components\dbExplorer\DbExplorer.csproj">
       <Project>{08f2ec89-33ce-47fe-a9e8-d6bc11629d9e}</Project>
       <Name>DbExplorer</Name>
@@ -115,6 +119,18 @@
     <ProjectReference Include="..\contracts\Contracts.csproj">
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\data\documentDb\DocumentDb.csproj">
+      <Project>{d08abaea-4bca-4fdc-80ae-ddd7478c3aa5}</Project>
+      <Name>DocumentDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\domain\Domain.csproj">
+      <Project>{a9d6f9b4-5993-4b77-9548-311b11d19b42}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\infrastructure\Infrastructure.csproj">
+      <Project>{ff25b6f1-f128-4019-92ba-8e5ed41a29ff}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

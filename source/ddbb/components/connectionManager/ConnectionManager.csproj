@@ -63,21 +63,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="BackendServiceMock.cs" />
     <Compile Include="ConnectionManagerView.xaml.cs">
       <DependentUpon>ConnectionManagerView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="CreateConnectionView.xaml">
+    <Page Include="CopyConnectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewConnectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionManagerViewModel.cs" />
-    <Compile Include="CreateConnectionView.xaml.cs">
-      <DependentUpon>CreateConnectionView.xaml</DependentUpon>
+    <Compile Include="CopyConnectionViewModel.cs" />
+    <Compile Include="CopyConnectionView.xaml.cs">
+      <DependentUpon>CopyConnectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateConnectionViewModel.cs" />
+    <Compile Include="Events\ConnectionCreatedEvent.cs" />
+    <Compile Include="Events\ConnectionEstablishedEvent.cs" />
+    <Compile Include="Events\ConnectionUpdatedEvent.cs" />
+    <Compile Include="ViewConnectionView.xaml.cs">
+      <DependentUpon>ViewConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewConnectionMode.cs" />
+    <Compile Include="ViewConnectionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
