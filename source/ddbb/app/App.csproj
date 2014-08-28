@@ -120,7 +120,7 @@
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\data\documentDb\DocumentDb.csproj">
+    <ProjectReference Include="..\documentDb\DocumentDb.csproj">
       <Project>{d08abaea-4bca-4fdc-80ae-ddd7478c3aa5}</Project>
       <Name>DocumentDb</Name>
     </ProjectReference>
