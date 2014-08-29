@@ -70,6 +70,7 @@ namespace ddbb.App
 		protected override void Configure()
 		{
 			MapNamespacesFor<IShell>();
+			MapNamespacesFor<IToolbarViewModel>();
 			MapNamespacesFor<IDbExplorer>();
 			MapNamespacesFor<IViewManager>();
 			MapNamespacesFor<IConnectionManagerViewModel>();
@@ -80,6 +81,7 @@ namespace ddbb.App
 			var assemblies = base.SelectAssemblies().ToList();
 			assemblies.Add(typeof (IShell).Assembly);
 			assemblies.AddRange(GetAssembliesFor<IShell>());
+			assemblies.AddRange(GetAssembliesFor<IToolbarViewModel>());
 			assemblies.AddRange(GetAssembliesFor<IDbExplorer>());
 			assemblies.AddRange(GetAssembliesFor<IViewManager>());
 			assemblies.AddRange(GetAssembliesFor<IConnectionManagerViewModel>());

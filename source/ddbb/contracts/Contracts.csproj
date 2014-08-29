@@ -54,6 +54,7 @@
     <Compile Include="ViewModels\IConnectionManagerViewModel.cs" />
     <Compile Include="ViewModels\IDbExplorer.cs" />
     <Compile Include="ViewModels\IShell.cs" />
+    <Compile Include="ViewModels\IToolbarViewModel.cs" />
     <Compile Include="ViewModels\IViewManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
