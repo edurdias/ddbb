@@ -11,13 +11,13 @@ namespace ddbb.App.Contracts.Services
 
 		Task<IConnection> Connect(IConnection connection);
 
-		IQueryBuilder CreateBuilder(IDatabaseConnection connection);
+		IQueryBuilder CreateBuilder(IDatabase database);
 
-		IQueryBuilder CreateBuilder(IDatabaseConnection connection, string collection);
+		IQueryBuilder CreateBuilder(IDatabase database, string collection);
 
-		Task<IEnumerable<IDatabaseConnection>> GetDatabases(IConnection connection);
+		Task<IEnumerable<IDatabase>> GetDatabases(IConnection connection);
 
-		Task<IEnumerable<string>> GetCollections(IDatabaseConnection connection);
+		Task<IEnumerable<string>> GetCollections(IDatabase database);
 
 		Task<IQueryable<dynamic>> Execute(IQueryBuilder queryBuilder);
 	}

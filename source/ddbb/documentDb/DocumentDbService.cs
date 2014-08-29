@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Services;
+using ddbb.App.Services.DocumentDb.Models;
 using ddbb.App.Services.DocumentDb.Properties;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
@@ -53,38 +54,46 @@ namespace ddbb.App.Services.DocumentDb
 		public bool IsValid(string endpointUrl, string authenticationKey)
 		{
 			using (var client = CreateClient(new DocumentDbConnection { AuthorizationKey = authenticationKey, EndpointUrl = endpointUrl })) {
-				
+				try {
+					client.OpenAsync().Wait();
+					return true;
+				}
+				catch (Exception) {
+					return false;
+				}
 			}
 		}
 
 		public async Task<IConnection> Connect(IConnection connection)
 		{
-			throw new NotImplementedException();
+			connection.Databases = await GetDatabases(connection);
+			return connection;
 		}
 
-		public IQueryBuilder CreateBuilder(IDatabaseConnection connection)
+		public IQueryBuilder CreateBuilder(IDatabase database)
 		{
-			return new DocumentDbQueryBuilder(this, connection);
+			return new DocumentDbQueryBuilder(this, database);
 		}
 
-		public IQueryBuilder CreateBuilder(IDatabaseConnection connection, string collection)
+		public IQueryBuilder CreateBuilder(IDatabase database, string collection)
 		{
-			return CreateBuilder(connection).Using(collection);
+			return CreateBuilder(database).Using(collection);
 		}
 
 		public async Task<IQueryable<dynamic>> Execute(IQueryBuilder queryBuilder)
 		{
 			return await Task.Run(() => {
-				var connection = queryBuilder.GetDatabaseConnection();
+				var database = queryBuilder.GetDatabase();
+				var connection = queryBuilder.GetConnection();
 
 				using (var client = CreateClient(connection)) {
-					var database = FindDatabase(client, connection.Database).Result;
+					var dbDatabase = FindDatabase(client, database.Name).Result;
 
-					if (database == null) {
-						throw new InvalidOperationException(string.Format(Resources.DatabaseDoesntExistMessage, connection.Database));
+					if (dbDatabase == null) {
+						throw new InvalidOperationException(string.Format(Resources.DatabaseDoesntExistMessage, database.Name));
 					}
 
-					var collection = FindCollection(client, database, queryBuilder.GetCollection()).Result;
+					var collection = FindCollection(client, dbDatabase, queryBuilder.GetCollection()).Result;
 
 					if (collection == null) {
 						throw new InvalidOperationException(string.Format(Resources.DocumentCollectionDoesntExistMessage, queryBuilder.GetCollection()));
@@ -95,33 +104,30 @@ namespace ddbb.App.Services.DocumentDb
 			});
 		}
 
-		public async Task<IEnumerable<IDatabaseConnection>> GetDatabases(IConnection connection)
+		public async Task<IEnumerable<IDatabase>> GetDatabases(IConnection connection)
 		{
 			return await Task.Run(() => {
 				using (var client = CreateClient(connection)) {
-					return client.CreateDatabaseQuery().AsEnumerable().Select(d => new DocumentDbConnection {
-						Database = d.Id,
-						AuthorizationKey = connection.AuthorizationKey,
-						EndpointUrl = connection.EndpointUrl,
-					});
+					return client.CreateDatabaseQuery().AsEnumerable().Select(d => new DocumentDbDatabase(connection) {
+						Name = d.Id
+					}).ToList();
 				}
 			});
 		}
 
-		public async Task<IEnumerable<string>> GetCollections(IDatabaseConnection connection)
+		public async Task<IEnumerable<string>> GetCollections(IDatabase database)
 		{
 			return await Task.Run(() => {
-				using (var client = CreateClient(connection)) {
-					var database = FindDatabase(client, connection.Database).Result;
+				using (var client = CreateClient(database.ParentConnection)) {
+					var dbDatabase = FindDatabase(client, database.Name).Result;
 
-					if (database == null) {
-						throw new InvalidOperationException(string.Format(Resources.DatabaseDoesntExistMessage, connection.Database));
+					if (dbDatabase == null) {
+						throw new InvalidOperationException(string.Format(Resources.DatabaseDoesntExistMessage, database.Name));
 					}
 
-					return client.CreateDocumentCollectionQuery(database.CollectionsLink).AsEnumerable().Select(c => c.Id);
+					return client.CreateDocumentCollectionQuery(dbDatabase.CollectionsLink).AsEnumerable().Select(c => c.Id).ToList();
 				}
 			});
-
 		}
 	}
 }

@@ -12,15 +12,15 @@ namespace ddbb.App.Services.DocumentDb
 		private string _collection;
 		private string _sqlStatement;
 
-		public DocumentDbQueryBuilder(IDocumentDbService service, IConnection connection)
+		public DocumentDbQueryBuilder(IDocumentDbService service, IDatabase database)
 		{
 			Service = service;
-			Connection = connection;
+			Database = database;
 		}
 
 		protected IDocumentDbService Service { get; set; }
 
-		protected IConnection Connection { get; private set; }
+		protected IDatabase Database { get; set; }
 
 		string IQueryBuilder.GetCollection()
 		{
@@ -32,9 +32,14 @@ namespace ddbb.App.Services.DocumentDb
 			return _sqlStatement;
 		}
 
-		IDatabaseConnection IQueryBuilder.GetDatabaseConnection()
+		IDatabase IQueryBuilder.GetDatabase()
 		{
-			return (IDatabaseConnection)Connection;
+			return Database;
+		}
+
+		IConnection IQueryBuilder.GetConnection()
+		{
+			return Database.ParentConnection;
 		}
 
 		public IQueryBuilder Using(string collection)

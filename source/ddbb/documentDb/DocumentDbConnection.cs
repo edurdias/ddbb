@@ -1,8 +1,9 @@
-﻿using ddbb.App.Contracts.Services;
+﻿using System.Collections.Generic;
+using ddbb.App.Contracts.Domain;
 
 namespace ddbb.App.Services.DocumentDb
 {
-	public class DocumentDbConnection : IDatabaseConnection
+	public class DocumentDbConnection : IConnection
 	{
 		public long Id { get; set; }
 
@@ -12,6 +13,6 @@ namespace ddbb.App.Services.DocumentDb
 
 		public string AuthorizationKey { get; set; }
 
-		public string Database { get; set; }
+		public IEnumerable<IDatabase> Databases { get; set; }
 	}
 }

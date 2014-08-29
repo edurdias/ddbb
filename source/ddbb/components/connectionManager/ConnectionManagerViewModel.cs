@@ -111,9 +111,10 @@ namespace ddbb.App.Components.ConnectionManager
 
 		public void Connect()
 		{
-			var establishedConnection = DocumentDb.Connect(SelectedConnection);
-			EventAggregator.PublishOnUIThread(new ConnectionEstablishedEvent(establishedConnection));
-			TryClose();
+			DocumentDb.Connect(SelectedConnection).ContinueWith(task => {
+				EventAggregator.PublishOnUIThread(new ConnectionEstablishedEvent(task.Result));
+				TryClose();
+			});
 		}
 
 		private void OpenDialog(Screen viewModel)

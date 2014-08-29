@@ -4,6 +4,6 @@ namespace ddbb.App.Contracts.Events
 {
 	public interface IConnectionEstablishedEvent
 	{
-		IConnection Connection { get; set; }
+		IConnection Connection { get; }
 	}
 }
