@@ -39,3 +39,5 @@ source/ddbb/components/connectionManager/bin/
 *.user
 /source/ddbb/components/toolbar/bin/Debug
 /source/ddbb/components/toolbar/obj/Debug
+source/ddbb/documentDb/bin/
+source/ddbb/documentDb/obj/

@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IConnection.cs" />
+    <Compile Include="IDatabaseConnection.cs" />
     <Compile Include="IQueryBuilder.cs" />
     <Compile Include="IQueryExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

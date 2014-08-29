@@ -10,6 +10,6 @@ namespace ddbb.App.Components.ConnectionManager.Events
 			Connection = connection;
 		}
 
-		public IConnection Connection { get; set; }
+		public IConnection Connection { get; private set; }
 	}
 }

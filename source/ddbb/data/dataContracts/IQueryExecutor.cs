@@ -1,17 +1,18 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ddbb.App.Data.DataContracts
 {
 	public interface IQueryExecutor
 	{
-		IQueryBuilder Create(IConnection connection);
-		
-		IQueryBuilder Create(IConnection connection, string collection);
+		IQueryBuilder CreateBuilder(IDatabaseConnection connection);
 
-		Task<IQueryable<dynamic>> GetDatabases(IConnection connection);
+		IQueryBuilder CreateBuilder(IDatabaseConnection connection, string collection);
 
-		Task<IQueryable<dynamic>> GetCollections(IConnection connection);
+		Task<IEnumerable<IDatabaseConnection>> GetDatabases(IConnection connection);
+
+		Task<IEnumerable<string>> GetCollections(IDatabaseConnection connection);
 
 		Task<IQueryable<dynamic>> Execute(IQueryBuilder queryBuilder);
 	}

@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using ddbb.App.Contracts.Domain;
 
-namespace ddbb.App.Data.DataContracts
+namespace ddbb.App.Contracts.Services
 {
 	public interface IQueryBuilder
 	{
@@ -9,7 +10,9 @@ namespace ddbb.App.Data.DataContracts
 
 		string GetSqlStatement();
 
-		IDatabaseConnection GetDatabaseConnection();
+		IDatabase GetDatabase();
+
+		IConnection GetConnection();
 
 		IQueryBuilder Using(string collection);
 

@@ -6,6 +6,8 @@ namespace ddbb.App.Contracts.Domain
 	{
 		string Name { get; set; }
 
+		IConnection ParentConnection { get; set; }
+
 		IEnumerable<IDbCollection> Collections { get; set; }
 
 		IEnumerable<IDbUser> Users { get; set; } 
