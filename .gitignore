@@ -36,3 +36,4 @@ source/ddbb/domain/obj/
 source/ddbb/domain/bin/
 source/ddbb/components/connectionManager/bin/
 *.DotSettings
+*.user
