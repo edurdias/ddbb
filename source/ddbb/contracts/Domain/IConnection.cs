@@ -12,6 +12,6 @@ namespace ddbb.App.Contracts.Domain
 
 		string AuthorizationKey { get; set; }
 
-		//IEnumerable<IDatabase> Databases { get; set; }  
+		IEnumerable<IDatabase> Databases { get; set; }  
 	}
 }

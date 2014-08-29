@@ -50,6 +50,18 @@ namespace ddbb.App.Services.DocumentDb
 			return collection;
 		}
 
+		public bool IsValid(string endpointUrl, string authenticationKey)
+		{
+			using (var client = CreateClient(new DocumentDbConnection { AuthorizationKey = authenticationKey, EndpointUrl = endpointUrl })) {
+				
+			}
+		}
+
+		public async Task<IConnection> Connect(IConnection connection)
+		{
+			throw new NotImplementedException();
+		}
+
 		public IQueryBuilder CreateBuilder(IDatabaseConnection connection)
 		{
 			return new DocumentDbQueryBuilder(this, connection);

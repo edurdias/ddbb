@@ -6,18 +6,18 @@
             HorizontalAlignment="Stretch"
             WindowState="Maximized" >
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="200"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ContentControl x:Name="DbExplorer"></ContentControl>
-        <GridSplitter 
-            HorizontalAlignment="Right" 
-            VerticalAlignment="Stretch" 
-            ResizeBehavior="PreviousAndNext" 
-            Grid.Column="1"
-            Width="4"/>
-        <ContentControl Grid.Column="2" x:Name="ViewManager"></ContentControl>
+        <ContentControl Grid.ColumnSpan="3" x:Name="Toolbar"></ContentControl>
+        <ContentControl Grid.Row="1" Grid.Column="0" x:Name="DbExplorer"></ContentControl>
+        <GridSplitter HorizontalAlignment="Right" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext" Grid.Row="1" Grid.Column="1" Width="4"/>
+        <ContentControl Grid.Row="1" Grid.Column="2" x:Name="ViewManager"></ContentControl>
     </Grid>
 </Window>

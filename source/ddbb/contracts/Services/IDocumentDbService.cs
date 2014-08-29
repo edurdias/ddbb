@@ -7,6 +7,10 @@ namespace ddbb.App.Contracts.Services
 {
 	public interface IDocumentDbService
 	{
+		bool IsValid(string endpointUrl, string authenticationKey);
+
+		Task<IConnection> Connect(IConnection connection);
+
 		IQueryBuilder CreateBuilder(IDatabaseConnection connection);
 
 		IQueryBuilder CreateBuilder(IDatabaseConnection connection, string collection);

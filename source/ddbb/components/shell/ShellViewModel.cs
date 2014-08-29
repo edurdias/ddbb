@@ -10,12 +10,15 @@ namespace ddbb.App.Components.Shell
 	public class ShellViewModel : Conductor<IScreen>.Collection.AllActive, IShell
 	{
 		[ImportingConstructor]
-		public ShellViewModel(IDbExplorer explorer, IViewManager viewManager, IWindowManager windowManager)
+		public ShellViewModel(IToolbarViewModel toolbar, IDbExplorer explorer, IViewManager viewManager, IWindowManager windowManager)
 		{
+			Toolbar = toolbar;
 			DbExplorer = explorer;
 			ViewManager = viewManager;
 			WindowManager = windowManager;
 		}
+
+		public IToolbarViewModel Toolbar { get; set; }
 
 		public IDbExplorer DbExplorer { get; private set; }
 

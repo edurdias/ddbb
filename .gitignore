@@ -37,5 +37,7 @@ source/ddbb/domain/bin/
 source/ddbb/components/connectionManager/bin/
 *.DotSettings
 *.user
+/source/ddbb/components/toolbar/bin/Debug
+/source/ddbb/components/toolbar/obj/Debug
 source/ddbb/documentDb/bin/
-source/ddbb/documentDb/
+source/ddbb/documentDb/obj/

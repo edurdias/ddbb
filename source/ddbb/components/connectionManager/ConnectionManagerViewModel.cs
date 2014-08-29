@@ -19,14 +19,14 @@ namespace ddbb.App.Components.ConnectionManager
 		private IConnection selectedConnection;
 
 		[ImportingConstructor]
-		public ConnectionManagerViewModel(IWindowManager windowManager, IConnectionRepository repository, IEventAggregator eventAggregator, IBackendService backend)
+		public ConnectionManagerViewModel(IWindowManager windowManager, IConnectionRepository repository, IEventAggregator eventAggregator, IDocumentDbService documentDb)
 		{
 			WindowManager = windowManager;
 			Repository = repository;
 			Connections = new BindableCollection<IConnection>(Repository.All());
 			EventAggregator = eventAggregator;
 			EventAggregator.Subscribe(this);
-			Backend = backend;
+			DocumentDb = documentDb;
 		}
 
 		private IWindowManager WindowManager { get; set; }
@@ -35,7 +35,7 @@ namespace ddbb.App.Components.ConnectionManager
 
 		private IEventAggregator EventAggregator { get; set; }
 
-		public IBackendService Backend { get; set; }
+		public IDocumentDbService DocumentDb { get; set; }
 
 		public IObservableCollection<IConnection> Connections
 		{
@@ -111,7 +111,7 @@ namespace ddbb.App.Components.ConnectionManager
 
 		public void Connect()
 		{
-			var establishedConnection = Backend.Connect(SelectedConnection);
+			var establishedConnection = DocumentDb.Connect(SelectedConnection);
 			EventAggregator.PublishOnUIThread(new ConnectionEstablishedEvent(establishedConnection));
 			TryClose();
 		}
