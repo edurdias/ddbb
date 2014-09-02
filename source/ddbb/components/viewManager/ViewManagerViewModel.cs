@@ -3,8 +3,8 @@ using ddbb.App.Contracts.ViewModels;
 
 namespace ddbb.App.Components.ViewManager
 {
-	[Export(typeof(IViewManager))]
-	public class ViewManagerViewModel : IViewManager
+	[Export(typeof(IViewManagerViewModel))]
+	public class ViewManagerViewModel : IViewManagerViewModel
 	{
 		
 	}

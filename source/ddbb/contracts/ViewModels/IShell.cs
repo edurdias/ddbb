@@ -2,8 +2,8 @@ namespace ddbb.App.Contracts.ViewModels
 {
 	public interface IShell
 	{
-		IDbExplorer DbExplorer { get; }
+		IDbExplorerViewModel DbExplorer { get; }
 
-		IViewManager ViewManager { get; }
+		IViewManagerViewModel ViewManager { get; }
 	}
 }

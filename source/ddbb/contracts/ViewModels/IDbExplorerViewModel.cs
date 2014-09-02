@@ -1,6 +1,6 @@
 namespace ddbb.App.Contracts.ViewModels
 {
-	public interface IDbExplorer
+	public interface IDbExplorerViewModel
 	{
 		 
 	}

@@ -64,12 +64,6 @@ namespace ddbb.App.Services.DocumentDb
 			}
 		}
 
-		public async Task<IConnection> Connect(IConnection connection)
-		{
-			connection.Databases = await GetDatabases(connection);
-			return connection;
-		}
-
 		public IQueryBuilder CreateBuilder(IDatabase database)
 		{
 			return new DocumentDbQueryBuilder(this, database);
@@ -78,6 +72,12 @@ namespace ddbb.App.Services.DocumentDb
 		public IQueryBuilder CreateBuilder(IDatabase database, string collection)
 		{
 			return CreateBuilder(database).Using(collection);
+		}
+
+		public async Task<IConnection> Connect(IConnection connection)
+		{
+			connection.Databases = await GetDatabases(connection);
+			return connection;
 		}
 
 		public async Task<IQueryable<dynamic>> Execute(IQueryBuilder queryBuilder)

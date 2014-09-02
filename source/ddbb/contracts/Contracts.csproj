@@ -55,10 +55,10 @@
     <Compile Include="Services\IDocumentDbService.cs" />
     <Compile Include="Services\IQueryBuilder.cs" />
     <Compile Include="ViewModels\IConnectionManagerViewModel.cs" />
-    <Compile Include="ViewModels\IDbExplorer.cs" />
+    <Compile Include="ViewModels\IDbExplorerViewModel.cs" />
     <Compile Include="ViewModels\IShell.cs" />
     <Compile Include="ViewModels\IToolbarViewModel.cs" />
-    <Compile Include="ViewModels\IViewManager.cs" />
+    <Compile Include="ViewModels\IViewManagerViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
