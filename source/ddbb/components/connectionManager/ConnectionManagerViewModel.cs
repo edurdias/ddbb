@@ -8,7 +8,6 @@ using ddbb.App.Contracts.Events;
 using ddbb.App.Contracts.Repositories;
 using ddbb.App.Contracts.Services;
 using ddbb.App.Contracts.ViewModels;
-using ddbb.App.Domain;
 
 namespace ddbb.App.Components.ConnectionManager
 {
