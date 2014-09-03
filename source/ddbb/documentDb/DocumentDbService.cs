@@ -51,6 +51,24 @@ namespace ddbb.App.Services.DocumentDb
 			return collection;
 		}
 
+		private static IEnumerable<IDbSproc> GetStoredProcedures(DocumentClient client, DocumentCollection collection)
+		{
+			//return client.CreateStoredProcedureQuery(c.StoredProceduresLink).Select();
+			return Enumerable.Empty<IDbSproc>();
+		}
+
+		private static IEnumerable<IDbTrigger> GetTriggers(DocumentClient client, DocumentCollection collection)
+		{
+			//return client.CreateStoredProcedureQuery(c.StoredProceduresLink).Select();
+			return Enumerable.Empty<IDbTrigger>();
+		}
+
+		private static IEnumerable<IDbFunction> GetFunctions(DocumentClient client, DocumentCollection collection)
+		{
+			//return client.CreateStoredProcedureQuery(c.StoredProceduresLink).Select();
+			return Enumerable.Empty<IDbFunction>();
+		}
+
 		public bool IsValid(string endpointUrl, string authenticationKey)
 		{
 			using (var client = CreateClient(new DocumentDbConnection { AuthorizationKey = authenticationKey, EndpointUrl = endpointUrl })) {
@@ -80,7 +98,7 @@ namespace ddbb.App.Services.DocumentDb
 			return connection;
 		}
 
-		public async Task<IQueryable<dynamic>> Execute(IQueryBuilder queryBuilder)
+		public async Task<IEnumerable<dynamic>> Execute(IQueryBuilder queryBuilder)
 		{
 			return await Task.Run(() => {
 				var database = queryBuilder.GetDatabase();
@@ -99,7 +117,7 @@ namespace ddbb.App.Services.DocumentDb
 						throw new InvalidOperationException(string.Format(Resources.DocumentCollectionDoesntExistMessage, queryBuilder.GetCollection()));
 					}
 
-					return client.CreateDocumentQuery(collection.DocumentsLink, queryBuilder.GetSqlStatement());
+					return client.CreateDocumentQuery(collection.DocumentsLink, queryBuilder.GetSqlStatement()).ToList();
 				}
 			});
 		}
@@ -115,7 +133,7 @@ namespace ddbb.App.Services.DocumentDb
 			});
 		}
 
-		public async Task<IEnumerable<string>> GetCollections(IDatabase database)
+		public async Task<IEnumerable<IDbCollection>> GetCollections(IDatabase database)
 		{
 			return await Task.Run(() => {
 				using (var client = CreateClient(database.ParentConnection)) {
@@ -125,7 +143,12 @@ namespace ddbb.App.Services.DocumentDb
 						throw new InvalidOperationException(string.Format(Resources.DatabaseDoesntExistMessage, database.Name));
 					}
 
-					return client.CreateDocumentCollectionQuery(dbDatabase.CollectionsLink).AsEnumerable().Select(c => c.Id).ToList();
+					return client.CreateDocumentCollectionQuery(dbDatabase.CollectionsLink).AsEnumerable().Select(c => new DocumentDbCollection {
+						Name = c.Id,
+						Triggers = GetTriggers(client, c),
+						Functions = GetFunctions(client, c),
+						StoredProcedures = GetStoredProcedures(client, c),
+					}).ToList();
 				}
 			});
 		}

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.Linq;
 using Caliburn.Micro;
-using ddbb.App.Contracts.Domain;
+using ddbb.App.Components.DbExplorer.ViewModels;
 using ddbb.App.Contracts.Events;
 using ddbb.App.Contracts.Services;
 using ddbb.App.Contracts.ViewModels;
@@ -11,7 +11,7 @@ namespace ddbb.App.Components.DbExplorer
 	[Export(typeof(IDbExplorerViewModel))]
 	public class DbExplorerViewModel : Screen, IDbExplorerViewModel, IHandle<IConnectionEstablishedEvent>
 	{
-		private IObservableCollection<IConnection> _connections;
+		private IObservableCollection<DbConnectionViewModel> _connections;
 
 		[ImportingConstructor]
 		public DbExplorerViewModel(IWindowManager windowManager, IEventAggregator eventAggregator, IDocumentDbService documentDb)
@@ -19,7 +19,7 @@ namespace ddbb.App.Components.DbExplorer
 			WindowManager = windowManager;
 			EventAggregator = eventAggregator;
 			DocumentDb = documentDb;
-			Connections = new BindableCollection<IConnection>();
+			Connections = new BindableCollection<DbConnectionViewModel>();
 			eventAggregator.Subscribe(this);
 		}
 
@@ -29,7 +29,7 @@ namespace ddbb.App.Components.DbExplorer
 
 		protected IDocumentDbService DocumentDb { get; set; }
 
-		public IObservableCollection<IConnection> Connections
+		public IObservableCollection<DbConnectionViewModel> Connections
 		{
 			get
 			{
@@ -73,8 +73,8 @@ namespace ddbb.App.Components.DbExplorer
 			if (Connections.Any(c => c.Id == message.Connection.Id)) {
 				return;
 			}
-			
-			Connections.AddRange(new[] { message.Connection });
+
+			Connections.AddRange(new[] { new DbConnectionViewModel(message.Connection, DocumentDb) });
 		}
 	}
 }

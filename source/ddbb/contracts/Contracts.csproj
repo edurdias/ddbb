@@ -50,8 +50,6 @@
     <Compile Include="Events\IConnectionEstablishedEvent.cs" />
     <Compile Include="Events\IConnectionUpdatedEvent.cs" />
     <Compile Include="Repositories\IConnectionRepository.cs" />
-    <Compile Include="Services\IBackendService.cs" />
-    <Compile Include="Services\IDatabaseConnection.cs" />
     <Compile Include="Services\IDocumentDbService.cs" />
     <Compile Include="Services\IQueryBuilder.cs" />
     <Compile Include="ViewModels\IConnectionManagerViewModel.cs" />

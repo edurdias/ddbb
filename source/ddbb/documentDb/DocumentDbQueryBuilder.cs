@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.Composition;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Services;
@@ -49,7 +49,7 @@ namespace ddbb.App.Services.DocumentDb
 			return this;
 		}
 
-		public async Task<IQueryable<dynamic>> Execute(string sql)
+		public async Task<IEnumerable<dynamic>> Execute(string sql)
 		{
 			_sqlStatement = sql;
 			return await Service.Execute(this);
