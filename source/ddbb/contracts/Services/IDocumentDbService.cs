@@ -17,8 +17,8 @@ namespace ddbb.App.Contracts.Services
 
 		Task<IEnumerable<IDatabase>> GetDatabases(IConnection connection);
 
-		Task<IEnumerable<string>> GetCollections(IDatabase database);
+		Task<IEnumerable<IDbCollection>> GetCollections(IDatabase database);
 
-		Task<IQueryable<dynamic>> Execute(IQueryBuilder queryBuilder);
+		Task<IEnumerable<dynamic>> Execute(IQueryBuilder queryBuilder);
 	}
 }

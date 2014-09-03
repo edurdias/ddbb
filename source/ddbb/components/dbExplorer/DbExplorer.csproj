@@ -59,6 +59,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\TreeViewViewModel.cs" />
     <Page Include="DbExplorerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +71,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbExplorerViewModel.cs" />
+    <Compile Include="ViewModels\DbCollectionViewModel.cs" />
+    <Compile Include="ViewModels\DbConnectionViewModel.cs" />
+    <Compile Include="ViewModels\DbDatabaseViewModel.cs" />
+    <Compile Include="ViewModels\DbFunctionViewModel.cs" />
+    <Compile Include="ViewModels\DbStoredProcViewModel.cs" />
+    <Compile Include="ViewModels\DbTriggerViewModel.cs" />
+    <Compile Include="ViewModels\DbUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -99,6 +107,12 @@
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\server.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\database.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ddbb.App.Contracts.Domain;
 
@@ -16,6 +16,6 @@ namespace ddbb.App.Contracts.Services
 
 		IQueryBuilder Using(string collection);
 
-		Task<IQueryable<dynamic>> Execute(string sql);
+		Task<IEnumerable<dynamic>> Execute(string sql);
 	}
 }

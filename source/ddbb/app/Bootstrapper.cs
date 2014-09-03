@@ -71,8 +71,8 @@ namespace ddbb.App
 		{
 			MapNamespacesFor<IShell>();
 			MapNamespacesFor<IToolbarViewModel>();
-			MapNamespacesFor<IDbExplorer>();
-			MapNamespacesFor<IViewManager>();
+			MapNamespacesFor<IDbExplorerViewModel>();
+			MapNamespacesFor<IViewManagerViewModel>();
 			MapNamespacesFor<IConnectionManagerViewModel>();
 		}
 
@@ -82,8 +82,8 @@ namespace ddbb.App
 			assemblies.Add(typeof (IShell).Assembly);
 			assemblies.AddRange(GetAssembliesFor<IShell>());
 			assemblies.AddRange(GetAssembliesFor<IToolbarViewModel>());
-			assemblies.AddRange(GetAssembliesFor<IDbExplorer>());
-			assemblies.AddRange(GetAssembliesFor<IViewManager>());
+			assemblies.AddRange(GetAssembliesFor<IDbExplorerViewModel>());
+			assemblies.AddRange(GetAssembliesFor<IViewManagerViewModel>());
 			assemblies.AddRange(GetAssembliesFor<IConnectionManagerViewModel>());
 			return assemblies;
 		}
