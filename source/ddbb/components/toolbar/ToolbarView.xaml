@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="500" HorizontalAlignment="Stretch">
     <Grid>
-        <Button x:Name="OpenConnectionManager" Content="Connections" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="101" Height="80"/>
+        <Button x:Name="OpenConnectionManager" Style="{StaticResource FontAwesome}" Content="&#xf1e6;" FontSize="30" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="101" Height="80" />
     </Grid>
 </UserControl>
