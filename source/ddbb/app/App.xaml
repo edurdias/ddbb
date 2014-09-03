@@ -8,6 +8,11 @@
                  <ResourceDictionary>
                      <local:Bootstrapper x:Key="Bootstrapper"/>
                  </ResourceDictionary>
+                 <ResourceDictionary>
+                     <Style x:Key="FontAwesome">
+                        <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/Fonts/#FontAwesome"></Setter>
+                     </Style>
+                 </ResourceDictionary>
              </ResourceDictionary.MergedDictionaries>
          </ResourceDictionary>
     </Application.Resources>
