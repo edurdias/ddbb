@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "contracts\Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbExplorer", "components\dbExplorer\DbExplorer.csproj", "{08F2EC89-33CE-47FE-A9E8-D6BC11629D9E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{D9608A3B-EA6D-4928-9C46-A7265D6A06D9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{D9608A3B-EA6D-4928-9C46-A7265D6A06D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "components\shell\Shell.csproj", "{6131EF8D-6642-478E-9F1B-E9818014D386}"
 EndProject
