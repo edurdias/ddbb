@@ -19,19 +19,26 @@
 		<TreeView.Resources>
 			<HierarchicalDataTemplate DataType="{x:Type viewModels:DbConnectionViewModel}" ItemsSource="{Binding Databases}">
 				<StackPanel Orientation="Horizontal">
-					<Image Source="Images/server.png" Width="20" Height="20"></Image>
-					<TextBlock x:Name="Name" Text="{Binding Name}"></TextBlock>
+					<TextBlock Style="{StaticResource FontAwesome}" Text="&#xf17a;" Width="20" FontSize="15" />
+					<TextBlock x:Name="Name" Text="{Binding Name}" />
 				</StackPanel>
 			</HierarchicalDataTemplate>
-			<HierarchicalDataTemplate DataType="{x:Type viewModels:DbDatabaseViewModel}" ItemsSource="{Binding Collections}">
+			<HierarchicalDataTemplate DataType="{x:Type viewModels:DbDatabaseViewModel}" ItemsSource="{Binding Children}">
 				<StackPanel Orientation="Horizontal">
-					<Image Source="Images/database.png" Width="20" Height="20"></Image>
-					<TextBlock x:Name="Name" Text="{Binding Name}"></TextBlock>
+					<TextBlock Style="{StaticResource FontAwesome}" Text="&#xf1c0;" Width="20" FontSize="15" />
+					<TextBlock x:Name="Name" Text="{Binding Name}" />
 				</StackPanel>
 			</HierarchicalDataTemplate>
-			<HierarchicalDataTemplate DataType="{x:Type viewModels:DbCollectionViewModel}" ItemsSource="{Binding Functions}">
+			<HierarchicalDataTemplate DataType="{x:Type viewModels:DbCollectionViewModel}">
 				<StackPanel Orientation="Horizontal">
-					<TextBlock x:Name="Name" Text="{Binding Name}"></TextBlock>
+					<TextBlock Style="{StaticResource FontAwesome}" Text="&#xf03a;" Width="20" FontSize="15" />
+					<TextBlock x:Name="Name" Text="{Binding Name}" />
+				</StackPanel>
+			</HierarchicalDataTemplate>
+			<HierarchicalDataTemplate DataType="{x:Type viewModels:DbUserViewModel}">
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Style="{StaticResource FontAwesome}" Text="&#xf0c0;" Width="20" FontSize="15" />
+					<TextBlock x:Name="Name" Text="{Binding UserName}" />
 				</StackPanel>
 			</HierarchicalDataTemplate>
 		</TreeView.Resources>

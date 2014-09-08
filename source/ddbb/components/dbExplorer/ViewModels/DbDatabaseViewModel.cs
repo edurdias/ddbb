@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Linq;
+using System.Windows.Data;
 using Caliburn.Micro;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Services;
@@ -56,6 +58,17 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 			}
 		}
 
+		public IList Children
+		{
+			get
+			{
+				return new CompositeCollection {
+					new CollectionContainer { Collection = Collections },
+					new CollectionContainer { Collection = Users }
+				};
+			}
+		}
+
 		public IObservableCollection<DbCollectionViewModel> Collections
 		{
 			get
@@ -98,9 +111,7 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 				Collections.Clear();
 
 				_service.GetCollections(_database).ContinueWith(task => {
-
 					Collections.AddRange(task.Result.Select(c => new DbCollectionViewModel(c)));
-
 					_hasLoaded = true;
 				});
 			}
