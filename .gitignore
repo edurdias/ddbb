@@ -41,3 +41,8 @@ source/ddbb/components/connectionManager/bin/
 /source/ddbb/components/toolbar/obj/Debug
 source/ddbb/documentDb/bin/
 source/ddbb/documentDb/obj/
+source/ddbb/core/infrastructure/bin/
+source/ddbb/core/contracts/obj/
+source/ddbb/core/domain/bin/
+source/ddbb/core/domain/obj/
+source/ddbb/core/infrastructure/obj/

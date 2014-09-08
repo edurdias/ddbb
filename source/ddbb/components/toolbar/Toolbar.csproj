@@ -95,7 +95,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\core\contracts\Contracts.csproj">
       <Project>{D3E0D7F8-132F-4419-BF49-38600F5555F2}</Project>
       <Name>Contracts</Name>
     </ProjectReference>

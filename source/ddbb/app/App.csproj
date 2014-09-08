@@ -144,7 +144,7 @@
       <Project>{ea167901-a0c1-4f7a-8f9d-d4d15eb5ca50}</Project>
       <Name>ViewManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\contracts\Contracts.csproj">
+    <ProjectReference Include="..\core\contracts\Contracts.csproj">
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
@@ -152,11 +152,11 @@
       <Project>{d08abaea-4bca-4fdc-80ae-ddd7478c3aa5}</Project>
       <Name>DocumentDb</Name>
     </ProjectReference>
-    <ProjectReference Include="..\domain\Domain.csproj">
+    <ProjectReference Include="..\core\domain\Domain.csproj">
       <Project>{a9d6f9b4-5993-4b77-9548-311b11d19b42}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\infrastructure\Infrastructure.csproj">
+    <ProjectReference Include="..\core\infrastructure\Infrastructure.csproj">
       <Project>{ff25b6f1-f128-4019-92ba-8e5ed41a29ff}</Project>
       <Name>Infrastructure</Name>
     </ProjectReference>
