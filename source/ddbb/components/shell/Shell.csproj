@@ -94,7 +94,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\contracts\Contracts.csproj">
+    <ProjectReference Include="..\..\core\contracts\Contracts.csproj">
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>
       <Name>Contracts</Name>
     </ProjectReference>

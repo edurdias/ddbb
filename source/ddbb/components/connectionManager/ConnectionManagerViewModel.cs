@@ -91,15 +91,20 @@ namespace ddbb.App.Components.ConnectionManager
 
 		public void Remove()
 		{
-			var result = MessageBox.Show(
-				string.Format("Really delete {0} connection?", SelectedConnection.Name), 
+			var result = IoC.Get<IMessageService>().Show
+			(
+				string.Format("Really delete {0} connection?", SelectedConnection.Name),
 				null, // no caption
-				MessageBoxButton.OKCancel, 
-				MessageBoxImage.Question);
+				MessageBoxButton.OKCancel,
+				MessageBoxImage.Question
+			);
+
+			
 			if (result == MessageBoxResult.OK)
 			{
 				Repository.Remove(SelectedConnection);
 				Connections.Remove(SelectedConnection);
+				SelectedConnection = null;
 			}
 		}
 
