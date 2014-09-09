@@ -46,3 +46,6 @@ source/ddbb/core/contracts/obj/
 source/ddbb/core/domain/bin/
 source/ddbb/core/domain/obj/
 source/ddbb/core/infrastructure/obj/
+/source/ddbb/TestResults
+/source/ddbb/tests/connectionManagerTests/bin/Debug
+/source/ddbb/tests/connectionManagerTests/obj/Debug

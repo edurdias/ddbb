@@ -51,12 +51,16 @@
     <Compile Include="Events\IConnectionUpdatedEvent.cs" />
     <Compile Include="Repositories\IConnectionRepository.cs" />
     <Compile Include="Services\IDocumentDbService.cs" />
+    <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\IQueryBuilder.cs" />
     <Compile Include="ViewModels\IConnectionManagerViewModel.cs" />
     <Compile Include="ViewModels\IDbExplorerViewModel.cs" />
     <Compile Include="ViewModels\IShell.cs" />
     <Compile Include="ViewModels\IToolbarViewModel.cs" />
     <Compile Include="ViewModels\IViewManagerViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
