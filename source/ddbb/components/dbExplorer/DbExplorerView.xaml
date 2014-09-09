@@ -23,7 +23,13 @@
 					<TextBlock x:Name="Name" Text="{Binding Name}" />
 				</StackPanel>
 			</HierarchicalDataTemplate>
-			<HierarchicalDataTemplate DataType="{x:Type viewModels:DbDatabaseViewModel}" ItemsSource="{Binding Children}">
+			<HierarchicalDataTemplate DataType="{x:Type viewModels:DbDatabaseViewModel}">
+				<HierarchicalDataTemplate.ItemsSource>
+					<MultiBinding>
+						<Binding Path="Collections" />
+						<Binding Path="Users" />
+					</MultiBinding>
+				</HierarchicalDataTemplate.ItemsSource>
 				<StackPanel Orientation="Horizontal">
 					<TextBlock Style="{StaticResource FontAwesome}" Text="&#xf1c0;" Width="20" FontSize="15" />
 					<TextBlock x:Name="Name" Text="{Binding Name}" />
@@ -41,6 +47,32 @@
 					<TextBlock x:Name="Name" Text="{Binding UserName}" />
 				</StackPanel>
 			</HierarchicalDataTemplate>
+			<!--<DataTemplate DataType="{x:Type viewModels:DbDatabaseViewModel}">
+				<TreeViewItem DataContext="{Binding}" Header="{Binding Path=Name}" >
+					<TreeViewItem.Resources>
+						<CollectionViewSource x:Key="Collections" Source="{Binding Path=Collections}" />
+						<CollectionViewSource x:Key="Users" Source="{Binding Path=Users}" />
+						<DataTemplate DataType="{x:Type viewModels:DbCollectionViewModel}">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Style="{StaticResource FontAwesome}" Text="&#xf03a;" Width="20" FontSize="15" />
+								<TextBlock x:Name="Name" Text="{Binding Name}" />
+							</StackPanel>
+						</DataTemplate>
+						<DataTemplate DataType="{x:Type viewModels:DbUserViewModel}">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Style="{StaticResource FontAwesome}" Text="&#xf0c0;" Width="20" FontSize="15" />
+								<TextBlock x:Name="Name" Text="{Binding UserName}" />
+							</StackPanel>
+						</DataTemplate>
+					</TreeViewItem.Resources>
+					<TreeViewItem.ItemsSource>
+						<CompositeCollection>
+							<CollectionContainer Collection="{Binding Source={StaticResource Collections}}"></CollectionContainer>
+							<CollectionContainer Collection="{Binding Source={StaticResource Users}}" />
+						</CompositeCollection>
+					</TreeViewItem.ItemsSource>
+				</TreeViewItem>
+			</DataTemplate>-->
 		</TreeView.Resources>
 	</TreeView>
 </UserControl>
