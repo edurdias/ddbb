@@ -40,7 +40,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{54B6A3A2-0449-458F-8F10-4E1092481826}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "connectionManagerTests", "tests\connectionManagerTests\connectionManagerTests.csproj", "{9D3B9F3E-48DD-40E4-97DA-8EA6B0AE5EEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionManager.Tests", "tests\connectionManagerTests\ConnectionManager.Tests.csproj", "{9D3B9F3E-48DD-40E4-97DA-8EA6B0AE5EEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionEditor", "components\collectionView\CollectionEditor.csproj", "{94D51B76-3304-466B-A232-231B106D45A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +94,10 @@ Global
 		{9D3B9F3E-48DD-40E4-97DA-8EA6B0AE5EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D3B9F3E-48DD-40E4-97DA-8EA6B0AE5EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D3B9F3E-48DD-40E4-97DA-8EA6B0AE5EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94D51B76-3304-466B-A232-231B106D45A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94D51B76-3304-466B-A232-231B106D45A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94D51B76-3304-466B-A232-231B106D45A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94D51B76-3304-466B-A232-231B106D45A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,5 +115,6 @@ Global
 		{60DC0425-6B60-4F86-B206-EF12D845C392} = {D9608A3B-EA6D-4928-9C46-A7265D6A06D9}
 		{52A7628E-5CDB-48AB-B969-6F101A87F8F8} = {D9608A3B-EA6D-4928-9C46-A7265D6A06D9}
 		{9D3B9F3E-48DD-40E4-97DA-8EA6B0AE5EEF} = {54B6A3A2-0449-458F-8F10-4E1092481826}
+		{94D51B76-3304-466B-A232-231B106D45A3} = {D9608A3B-EA6D-4928-9C46-A7265D6A06D9}
 	EndGlobalSection
 EndGlobal

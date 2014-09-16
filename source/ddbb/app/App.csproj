@@ -124,6 +124,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\components\collectionView\CollectionEditor.csproj">
+      <Project>{94d51b76-3304-466b-a232-231b106d45a3}</Project>
+      <Name>CollectionEditor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\components\connectionManager\ConnectionManager.csproj">
       <Project>{60dc0425-6b60-4f86-b206-ef12d845c392}</Project>
       <Name>ConnectionManager</Name>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
+using ddbb.App.Components.ConnectionManager;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Events;
 using ddbb.App.Contracts.Repositories;
@@ -10,7 +11,7 @@ using ddbb.App.Contracts.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace ddbb.App.Components.ConnectionManager.Tests
+namespace ddbb.Components.ConnectionManager.Tests
 {
 	[TestClass]
 	public class ConnectionManagerViewModelTest
@@ -39,7 +40,7 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 
 			repository.Setup(r => r.All()).Returns(expectedConnections);
 			
-			var viewModel = new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object);
+			var viewModel = CreateModel();
 
 			Assert.AreEqual(expectedConnections.Count, viewModel.Connections.Count);
 
@@ -51,7 +52,7 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 		public void EmptyConnectionsList()
 		{
 			repository.Setup(r => r.All()).Returns(new List<IConnection>());
-			var viewModel = new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object);
+			var viewModel = CreateModel();
 			Assert.AreEqual(0, viewModel.Connections.Count);
 		}
 
@@ -61,7 +62,7 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 		{
 			var expectedConnection = SetupConnections();
 
-			var viewModel = new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object);
+			var viewModel = CreateModel();
 
 			Assert.IsNull(viewModel.SelectedConnection);
 			Assert.IsFalse(viewModel.CanConnect);
@@ -100,10 +101,7 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 					Assert.AreEqual(expectedConnection, message.Connection);
 				}).Verifiable();
 
-			var viewModel = new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object)
-			{
-				SelectedConnection = expectedConnection
-			};
+			var viewModel = CreateModelWithSelectedConnection(expectedConnection);
 			
 			viewModel.Connect();
 
@@ -129,10 +127,7 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 				.Returns(() => true)
 				.Verifiable();
 
-			var viewModel = new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object)
-			{
-				SelectedConnection = expectedConnection
-			};
+			var viewModel = CreateModelWithSelectedConnection(expectedConnection);
 
 			Assert.IsTrue(viewModel.CanCopy);
 
@@ -160,10 +155,7 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 				.Returns(() => true)
 				.Verifiable();
 
-			var viewModel = new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object)
-			{
-				SelectedConnection = expectedConnection
-			};
+			var viewModel = CreateModelWithSelectedConnection(expectedConnection);
 
 			viewModel.Create();
 
@@ -189,10 +181,7 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 				.Returns(() => true)
 				.Verifiable();
 
-			var viewModel = new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object)
-			{
-				SelectedConnection = expectedConnection
-			};
+			var viewModel = CreateModelWithSelectedConnection(expectedConnection);
 
 			Assert.IsTrue(viewModel.CanModify);
 			
@@ -226,10 +215,7 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 				.Verifiable();
 
 
-			var viewModel = new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object)
-			{
-				SelectedConnection = expectedConnection
-			};
+			var viewModel = CreateModelWithSelectedConnection(expectedConnection);
 
 			Assert.IsTrue(viewModel.CanRemove);
 
@@ -239,6 +225,18 @@ namespace ddbb.App.Components.ConnectionManager.Tests
 
 			Assert.AreEqual(0, viewModel.Connections.Count);
 			Assert.IsNull(viewModel.SelectedConnection);
+		}
+
+		private ConnectionManagerViewModel CreateModelWithSelectedConnection(IConnection selectedConnection)
+		{
+			var viewModel = CreateModel();
+			viewModel.SelectedConnection = selectedConnection;
+			return viewModel;
+		}
+
+		private ConnectionManagerViewModel CreateModel()
+		{
+			return new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object);
 		}
 
 

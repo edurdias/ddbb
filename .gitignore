@@ -50,3 +50,5 @@ source/ddbb/core/infrastructure/obj/
 /source/ddbb/tests/connectionManagerTests/bin/Debug
 /source/ddbb/tests/connectionManagerTests/obj/Debug
 source/ddbb/core/contracts/bin/
+/source/ddbb/components/collectionEditor/bin/Debug
+source/ddbb/components/collectionEditor/obj/

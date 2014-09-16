@@ -1,10 +1,13 @@
-﻿<UserControl x:Class="ddbb.App.Components.ViewManager.ViewManagerView"
+﻿<UserControl x:Class="ddbb.Components.CollectionView.CollectionEditorView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <TabControl x:Name="Items" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
-    </TabControl>
+             d:DesignHeight="500" d:DesignWidth="500">
+    <Grid>
+        <Label Content="CollectionEditor" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+
+    </Grid>
 </UserControl>

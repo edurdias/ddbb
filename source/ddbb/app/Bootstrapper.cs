@@ -70,21 +70,25 @@ namespace ddbb.App
 		protected override void Configure()
 		{
 			MapNamespacesFor<IShell>();
+			//TODO: load view model contracts dynamically
 			MapNamespacesFor<IToolbarViewModel>();
 			MapNamespacesFor<IDbExplorerViewModel>();
 			MapNamespacesFor<IViewManagerViewModel>();
 			MapNamespacesFor<IConnectionManagerViewModel>();
+			MapNamespacesFor<ICollectionEditorViewModel>();
 		}
 
 		protected override IEnumerable<Assembly> SelectAssemblies()
 		{
 			var assemblies = base.SelectAssemblies().ToList();
 			assemblies.Add(typeof (IShell).Assembly);
+			//TODO: load view model contracts dynamically
 			assemblies.AddRange(GetAssembliesFor<IShell>());
 			assemblies.AddRange(GetAssembliesFor<IToolbarViewModel>());
 			assemblies.AddRange(GetAssembliesFor<IDbExplorerViewModel>());
 			assemblies.AddRange(GetAssembliesFor<IViewManagerViewModel>());
 			assemblies.AddRange(GetAssembliesFor<IConnectionManagerViewModel>());
+			assemblies.AddRange(GetAssembliesFor<ICollectionEditorViewModel>());
 			return assemblies;
 		}
 
