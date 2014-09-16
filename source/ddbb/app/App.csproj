@@ -124,7 +124,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\components\collectionView\CollectionEditor.csproj">
+    <ProjectReference Include="..\components\collectionEditor\CollectionEditor.csproj">
       <Project>{94d51b76-3304-466b-a232-231b106d45a3}</Project>
       <Name>CollectionEditor</Name>
     </ProjectReference>

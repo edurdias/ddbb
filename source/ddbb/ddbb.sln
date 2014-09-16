@@ -42,7 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{54B6A3A2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionManager.Tests", "tests\connectionManagerTests\ConnectionManager.Tests.csproj", "{9D3B9F3E-48DD-40E4-97DA-8EA6B0AE5EEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionEditor", "components\collectionView\CollectionEditor.csproj", "{94D51B76-3304-466B-A232-231B106D45A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionEditor", "components\collectionEditor\CollectionEditor.csproj", "{94D51B76-3304-466B-A232-231B106D45A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
