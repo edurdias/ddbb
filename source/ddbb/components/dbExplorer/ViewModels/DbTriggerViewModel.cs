@@ -6,9 +6,9 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 {
 	public class DbTriggerViewModel : TreeViewViewModel
 	{
-		private readonly IDbTrigger _trigger;
+		private readonly ITrigger _trigger;
 
-		public DbTriggerViewModel(IDbTrigger trigger)
+		public DbTriggerViewModel(ITrigger trigger)
 		{
 			_trigger = trigger ?? new DummyTrigger();
 		}
@@ -17,23 +17,23 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 		{
 			get
 			{
-				return _trigger.Script;
+				return _trigger.Body;
 			}
 			set
 			{
-				if (Equals(value, _trigger.Script)) {
+				if (Equals(value, _trigger.Body)) {
 					return;
 				}
 
-				_trigger.Script = value;
+				_trigger.Body = value;
 				NotifyOfPropertyChange(() => Script);
 				Refresh();
 			}
 		}
 
-		class DummyTrigger : IDbTrigger
+		class DummyTrigger : ITrigger
 		{
-			public string Script
+			public string Body
 			{
 				get { return string.Empty; }
 				set
@@ -41,6 +41,8 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 					
 				}
 			}
+
+			public string SelfLink { get; set; }
 		}
 	}
 }

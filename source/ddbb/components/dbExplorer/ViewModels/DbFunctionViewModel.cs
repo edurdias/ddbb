@@ -5,9 +5,9 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 {
 	public class DbFunctionViewModel : TreeViewViewModel
 	{
-		private readonly IDbFunction _function;
+		private readonly IUserDefinedFunction _function;
 
-		public DbFunctionViewModel(IDbFunction function)
+		public DbFunctionViewModel(IUserDefinedFunction function)
 		{
 			_function = function ?? new DummyFunction();
 		}
@@ -16,15 +16,15 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 		{
 			get
 			{
-				return _function.Script;
+				return _function.Body;
 			}
 			set
 			{
-				if (Equals(value, _function.Script)) {
+				if (Equals(value, _function.Body)) {
 					return;
 				}
 
-				_function.Script = value;
+				_function.Body = value;
 				NotifyOfPropertyChange(() => Script);
 				Refresh();
 			}
@@ -35,9 +35,9 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 
 		}
 
-		class DummyFunction : IDbFunction
+		class DummyFunction : IUserDefinedFunction
 		{
-			public string Script
+			public string Body
 			{
 				get
 				{
@@ -47,6 +47,8 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 				{
 				}
 			}
+
+			public string SelfLink { get; set; }
 		}
 	}
 }

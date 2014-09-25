@@ -10,7 +10,7 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 		private readonly IConnection _connection;
 		private IObservableCollection<DbDatabaseViewModel> _databases;
 
-		public DbConnectionViewModel(IConnection connection, IDocumentDbService service)
+		public DbConnectionViewModel(IConnection connection, IBackend service)
 		{
 			_connection = connection;
 			Databases = new BindableCollection<DbDatabaseViewModel>(_connection.Databases.Select(d => new DbDatabaseViewModel(d, service)));

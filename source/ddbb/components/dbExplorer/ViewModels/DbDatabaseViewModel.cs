@@ -8,13 +8,13 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 	public class DbDatabaseViewModel : TreeViewViewModel
 	{
 		private readonly IDatabase _database;
-		private readonly IDocumentDbService _service;
+		private readonly IBackend _service;
 
 		private bool _hasLoaded;
 		private IObservableCollection<DbUserViewModel> _users;
 		private IObservableCollection<DbCollectionViewModel> _collections;
 
-		public DbDatabaseViewModel(IDatabase database, IDocumentDbService service)
+		public DbDatabaseViewModel(IDatabase database, IBackend service)
 		{
 			_database = database; 
 			_service = service;
@@ -97,12 +97,12 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 			if (value && !_hasLoaded) {
 				Collections.Clear();
 
-				_service.GetCollections(_database).ContinueWith(task => {
+				//_service.GetCollections(_database).ContinueWith(task => {
 
-					Collections.AddRange(task.Result.Select(c => new DbCollectionViewModel(c)));
+				//	Collections.AddRange(task.Result.Select(c => new DbCollectionViewModel(c)));
 
-					_hasLoaded = true;
-				});
+				//	_hasLoaded = true;
+				//});
 			}
 		}
 	}

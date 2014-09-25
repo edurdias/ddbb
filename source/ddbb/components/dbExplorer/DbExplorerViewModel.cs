@@ -14,7 +14,7 @@ namespace ddbb.App.Components.DbExplorer
 		private IObservableCollection<DbConnectionViewModel> _connections;
 
 		[ImportingConstructor]
-		public DbExplorerViewModel(IWindowManager windowManager, IEventAggregator eventAggregator, IDocumentDbService documentDb)
+		public DbExplorerViewModel(IWindowManager windowManager, IEventAggregator eventAggregator, IBackend documentDb)
 		{
 			WindowManager = windowManager;
 			EventAggregator = eventAggregator;
@@ -27,7 +27,7 @@ namespace ddbb.App.Components.DbExplorer
 
 		protected IEventAggregator EventAggregator { get; set; }
 
-		protected IDocumentDbService DocumentDb { get; set; }
+		protected IBackend DocumentDb { get; set; }
 
 		public IObservableCollection<DbConnectionViewModel> Connections
 		{

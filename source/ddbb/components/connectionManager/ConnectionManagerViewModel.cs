@@ -18,14 +18,14 @@ namespace ddbb.App.Components.ConnectionManager
 		private IConnection selectedConnection;
 
 		[ImportingConstructor]
-		public ConnectionManagerViewModel(IWindowManager windowManager, IConnectionRepository repository, IEventAggregator eventAggregator, IDocumentDbService documentDb)
+		public ConnectionManagerViewModel(IWindowManager windowManager, IConnectionRepository repository, IEventAggregator eventAggregator, IBackend backend)
 		{
 			WindowManager = windowManager;
 			Repository = repository;
 			Connections = new BindableCollection<IConnection>(Repository.All());
 			EventAggregator = eventAggregator;
 			EventAggregator.Subscribe(this);
-			DocumentDb = documentDb;
+			Backend = backend;
 		}
 
 		private IWindowManager WindowManager { get; set; }
@@ -34,7 +34,7 @@ namespace ddbb.App.Components.ConnectionManager
 
 		private IEventAggregator EventAggregator { get; set; }
 
-		public IDocumentDbService DocumentDb { get; set; }
+		public IBackend Backend { get; set; }
 
 		public IObservableCollection<IConnection> Connections
 		{
@@ -43,7 +43,7 @@ namespace ddbb.App.Components.ConnectionManager
 			{
 				if (Equals(value, connections)) return;
 				connections = value;
-				NotifyOfPropertyChange(()=> Connections);
+				NotifyOfPropertyChange(() => Connections);
 				Refresh();
 			}
 		}
@@ -76,7 +76,7 @@ namespace ddbb.App.Components.ConnectionManager
 
 		public bool CanConnect
 		{
-			get { return SelectedConnection != null;  }
+			get { return SelectedConnection != null; }
 		}
 
 		public void Create()
@@ -99,7 +99,7 @@ namespace ddbb.App.Components.ConnectionManager
 				MessageBoxImage.Question
 			);
 
-			
+
 			if (result == MessageBoxResult.OK)
 			{
 				Repository.Remove(SelectedConnection);
@@ -115,10 +115,9 @@ namespace ddbb.App.Components.ConnectionManager
 
 		public void Connect()
 		{
-			DocumentDb.Connect(SelectedConnection).ContinueWith(task => {
-				EventAggregator.PublishOnUIThread(new ConnectionEstablishedEvent(task.Result));
-				TryClose();
-			});
+			var connection = Backend.Connect(SelectedConnection);
+			EventAggregator.PublishOnUIThread(new ConnectionEstablishedEvent(connection));
+			TryClose();
 		}
 
 		private void OpenDialog(Screen viewModel)

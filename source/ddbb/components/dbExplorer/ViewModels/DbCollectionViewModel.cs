@@ -7,12 +7,12 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 {
 	public class DbCollectionViewModel : TreeViewViewModel
 	{
-		private readonly IDbCollection _collection;
+		private readonly IDocumentCollection _collection;
 		private IObservableCollection<DbTriggerViewModel> _triggers;
 		private IObservableCollection<DbFunctionViewModel> _functions;
 		private IObservableCollection<DbStoredProcViewModel> _storedProcs;
 
-		public DbCollectionViewModel(IDbCollection collection)
+		public DbCollectionViewModel(IDocumentCollection collection)
 		{
 			_collection = collection ?? new DummyCollection();
 
@@ -27,8 +27,8 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 				StoredProcedures.AddRange(new[] { new DbStoredProcViewModel(null) });
 			}
 
-			if (_collection.Functions != null && _collection.Functions.Any()) {
-				Functions.AddRange(_collection.Functions.Select(f => new DbFunctionViewModel(f)));
+			if (_collection.UserDefinedFunctions != null && _collection.UserDefinedFunctions.Any()) {
+				Functions.AddRange(_collection.UserDefinedFunctions.Select(f => new DbFunctionViewModel(f)));
 			}
 			else {
 				Functions.AddRange(new[] { new DbFunctionViewModel(null) });
@@ -119,7 +119,7 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 			
 		}
 
-		class DummyCollection : IDbCollection
+		class DummyCollection : IDocumentCollection
 		{
 			public string Name
 			{
@@ -132,11 +132,16 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 				}
 			}
 
-			public IEnumerable<IDbSproc> StoredProcedures { get; set; }
+			public IEnumerable<IStoredProcedure> StoredProcedures { get; set; }
 
-			public IEnumerable<IDbTrigger> Triggers { get; set; }
+			public IEnumerable<ITrigger> Triggers { get; set; }
 
-			public IEnumerable<IDbFunction> Functions { get; set; }
+			public IEnumerable<IUserDefinedFunction> UserDefinedFunctions { get; set; }
+			public string StoredProceduresLink { get; set; }
+			public string TriggersLink { get; set; }
+			public string UserDefinedFunctionsLink { get; set; }
+			public string SelfLink { get; set; }
+			public string DocumentsLink { get; set; }
 		}
 	}
 }

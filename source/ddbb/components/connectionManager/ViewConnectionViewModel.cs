@@ -32,7 +32,7 @@ namespace ddbb.App.Components.ConnectionManager
 		}
 
 		[Import]
-		public IDocumentDbService DocumentDbService { get; set; }
+		public IBackend Backend { get; set; }
 
 		[Import]
 		public IConnectionRepository Repository { get; set; }
@@ -92,7 +92,7 @@ namespace ddbb.App.Components.ConnectionManager
 
 		public void TestConnection()
 		{
-			if (DocumentDbService.IsValid(EndpointUrl, AuthenticationKey))
+			if (Backend.IsValid(EndpointUrl, AuthenticationKey))
 				MessageBox.Show("It works!");
 			else
 				MessageBox.Show("Invalid Endpoint Url or Authentication Key", 

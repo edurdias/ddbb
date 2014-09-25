@@ -44,7 +44,7 @@
       <HintPath>..\..\packages\Caliburn.Micro.2.0.1\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\..\packages\Moq.4.2.1408.0717\lib\net40\Moq.dll</HintPath>
+      <HintPath>..\..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />

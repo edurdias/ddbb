@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ddbb.App.Contracts.Services;
 
 namespace ddbb.App.Contracts.Domain
 {
@@ -13,5 +14,7 @@ namespace ddbb.App.Contracts.Domain
 		string AuthorizationKey { get; set; }
 
 		IEnumerable<IDatabase> Databases { get; set; }
+		
+		IDatabase CreateDatabase(string name);
 	}
 }

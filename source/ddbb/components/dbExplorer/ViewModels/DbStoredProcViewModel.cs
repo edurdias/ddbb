@@ -5,9 +5,9 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 {
 	public class DbStoredProcViewModel : TreeViewViewModel
 	{
-		private readonly IDbSproc _sproc;
+		private readonly IStoredProcedure _sproc;
 
-		public DbStoredProcViewModel(IDbSproc sproc)
+		public DbStoredProcViewModel(IStoredProcedure sproc)
 		{
 			_sproc = sproc ?? new DummyStoredProc();
 		}
@@ -16,15 +16,15 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 		{
 			get
 			{
-				return _sproc.Script;
+				return _sproc.Body;
 			}
 			set
 			{
-				if (Equals(value, _sproc.Script)) {
+				if (Equals(value, _sproc.Body)) {
 					return;
 				}
 
-				_sproc.Script = value;
+				_sproc.Body = value;
 				NotifyOfPropertyChange(() => Script);
 				Refresh();
 			}
@@ -35,9 +35,9 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 
 		}
 		
-		class DummyStoredProc : IDbSproc
+		class DummyStoredProc : IStoredProcedure
 		{
-			public string Script
+			public string Body
 			{
 				get
 				{
@@ -47,6 +47,8 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 				{
 				}
 			}
+
+			public string SelfLink { get; set; }
 		}
 	}
 }

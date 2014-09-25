@@ -39,7 +39,7 @@ namespace ddbb.App.Services.DocumentDb
 
 		IConnection IQueryBuilder.GetConnection()
 		{
-			return Database.ParentConnection;
+			return Database.Connection;
 		}
 
 		public IQueryBuilder Using(string collection)

@@ -124,6 +124,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\components\backend\Backend.csproj">
+      <Project>{2e506862-15bc-4337-9a9a-c6f9d94eb22e}</Project>
+      <Name>Backend</Name>
+    </ProjectReference>
     <ProjectReference Include="..\components\collectionEditor\CollectionEditor.csproj">
       <Project>{94d51b76-3304-466b-a232-231b106d45a3}</Project>
       <Name>CollectionEditor</Name>
@@ -151,10 +155,6 @@
     <ProjectReference Include="..\core\contracts\Contracts.csproj">
       <Project>{d3e0d7f8-132f-4419-bf49-38600f5555f2}</Project>
       <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\documentDb\DocumentDb.csproj">
-      <Project>{d08abaea-4bca-4fdc-80ae-ddd7478c3aa5}</Project>
-      <Name>DocumentDb</Name>
     </ProjectReference>
     <ProjectReference Include="..\core\domain\Domain.csproj">
       <Project>{a9d6f9b4-5993-4b77-9548-311b11d19b42}</Project>

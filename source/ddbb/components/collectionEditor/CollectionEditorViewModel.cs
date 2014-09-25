@@ -8,11 +8,26 @@ namespace ddbb.Components.CollectionView
 	[Export(typeof(ICollectionEditorViewModel))]
 	public class CollectionEditorViewModel : Screen, ICollectionEditorViewModel
 	{
+		private IDocumentCollection collection;
+
 		public CollectionEditorViewModel()
 		{
-			DisplayName = "Collection Editor";
+			Collection = Content as IDocumentCollection;
+			DisplayName = Collection != null ? Collection.Name : string.Empty;
 		}
 
-		public IDbCollection Collection { get; set; }
+		public object Content { get { return Collection;  } set { Collection = value as IDocumentCollection; } }
+
+		public IDocumentCollection Collection
+		{
+			get { return collection; }
+			set
+			{
+				collection = value;
+				DisplayName = collection != null ? collection.Name : string.Empty;
+				NotifyOfPropertyChange(() => Collection);
+				Refresh();
+			}
+		}
 	}
 }

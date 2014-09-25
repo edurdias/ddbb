@@ -52,3 +52,7 @@ source/ddbb/core/infrastructure/obj/
 source/ddbb/core/contracts/bin/
 /source/ddbb/components/collectionEditor/bin/Debug
 source/ddbb/components/collectionEditor/obj/
+/source/ddbb/components/backend/bin/Debug
+/source/ddbb/components/backend/obj/Debug
+/source/ddbb/tests/collectionEditorTests/bin/Debug
+/source/ddbb/tests/collectionEditorTests/obj/Debug

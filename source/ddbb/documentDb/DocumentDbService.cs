@@ -23,13 +23,14 @@ namespace ddbb.App.Services.DocumentDb
 
 		private static async Task<Database> FindDatabase(DocumentClient client, string databaseName, bool create = false)
 		{
-			var database = client.CreateDatabaseQuery().AsEnumerable().FirstOrDefault(db => db.Id == databaseName);
+			var database = client.CreateDatabaseQuery().FirstOrDefault(db => db.Id == databaseName);
 
-			if (database == null && create) {
-				var resource = await client.CreateDatabaseAsync(new Database {
+			if (database == null && create)
+			{
+				var resource = await client.CreateDatabaseAsync(new Database
+				{
 					Id = databaseName
 				});
-
 				database = resource.Resource;
 			}
 
@@ -38,10 +39,12 @@ namespace ddbb.App.Services.DocumentDb
 
 		private static async Task<DocumentCollection> FindCollection(DocumentClient client, Database database, string name, bool create = false)
 		{
-			var collection = client.CreateDocumentCollectionQuery(database.CollectionsLink).AsEnumerable().FirstOrDefault(c => c.Id == name);
+			var collection = client.CreateDocumentCollectionQuery(database.CollectionsLink).FirstOrDefault(c => c.Id == name);
 
-			if (collection == null && create) {
-				var resource = await client.CreateDocumentCollectionAsync(database.SelfLink, new DocumentCollection {
+			if (collection == null && create)
+			{
+				var resource = await client.CreateDocumentCollectionAsync(database.SelfLink, new DocumentCollection
+				{
 					Id = name
 				});
 
@@ -71,12 +74,15 @@ namespace ddbb.App.Services.DocumentDb
 
 		public bool IsValid(string endpointUrl, string authenticationKey)
 		{
-			using (var client = CreateClient(new DocumentDbConnection { AuthorizationKey = authenticationKey, EndpointUrl = endpointUrl })) {
-				try {
+			using (var client = CreateClient(new DocumentDbConnection { AuthorizationKey = authenticationKey, EndpointUrl = endpointUrl }))
+			{
+				try
+				{
 					client.OpenAsync().Wait();
 					return true;
 				}
-				catch (Exception) {
+				catch (Exception)
+				{
 					return false;
 				}
 			}
@@ -100,22 +106,22 @@ namespace ddbb.App.Services.DocumentDb
 
 		public async Task<IEnumerable<dynamic>> Execute(IQueryBuilder queryBuilder)
 		{
-			return await Task.Run(() => {
+			return await Task.Run(() =>
+			{
 				var database = queryBuilder.GetDatabase();
 				var connection = queryBuilder.GetConnection();
 
-				using (var client = CreateClient(connection)) {
+				using (var client = CreateClient(connection))
+				{
 					var dbDatabase = FindDatabase(client, database.Name).Result;
 
-					if (dbDatabase == null) {
+					if (dbDatabase == null)
 						throw new InvalidOperationException(string.Format(Resources.DatabaseDoesntExistMessage, database.Name));
-					}
 
 					var collection = FindCollection(client, dbDatabase, queryBuilder.GetCollection()).Result;
 
-					if (collection == null) {
+					if (collection == null)
 						throw new InvalidOperationException(string.Format(Resources.DocumentCollectionDoesntExistMessage, queryBuilder.GetCollection()));
-					}
 
 					return client.CreateDocumentQuery(collection.DocumentsLink, queryBuilder.GetSqlStatement()).ToList();
 				}
@@ -124,9 +130,12 @@ namespace ddbb.App.Services.DocumentDb
 
 		public async Task<IEnumerable<IDatabase>> GetDatabases(IConnection connection)
 		{
-			return await Task.Run(() => {
-				using (var client = CreateClient(connection)) {
-					return client.CreateDatabaseQuery().AsEnumerable().Select(d => new DocumentDbDatabase(connection) {
+			return await Task.Run(() =>
+			{
+				using (var client = CreateClient(connection))
+				{
+					return client.CreateDatabaseQuery().Select(d => new DocumentDbDatabase(connection)
+					{
 						Name = d.Id
 					}).ToList();
 				}
@@ -135,15 +144,17 @@ namespace ddbb.App.Services.DocumentDb
 
 		public async Task<IEnumerable<IDbCollection>> GetCollections(IDatabase database)
 		{
-			return await Task.Run(() => {
-				using (var client = CreateClient(database.ParentConnection)) {
+			return await Task.Run(() =>
+			{
+				using (var client = CreateClient(database.Connection))
+				{
 					var dbDatabase = FindDatabase(client, database.Name).Result;
 
-					if (dbDatabase == null) {
+					if (dbDatabase == null)
 						throw new InvalidOperationException(string.Format(Resources.DatabaseDoesntExistMessage, database.Name));
-					}
 
-					return client.CreateDocumentCollectionQuery(dbDatabase.CollectionsLink).AsEnumerable().Select(c => new DocumentDbCollection {
+					return client.CreateDocumentCollectionQuery(dbDatabase.CollectionsLink).Select(c => new DocumentDbCollection
+					{
 						Name = c.Id,
 						Triggers = GetTriggers(client, c),
 						Functions = GetFunctions(client, c),

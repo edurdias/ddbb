@@ -7,12 +7,12 @@ namespace ddbb.App.Services.DocumentDb.Models
 	{
 		public DocumentDbDatabase(IConnection connection)
 		{
-			ParentConnection = connection;
+			Connection = connection;
 		}
 
 		public string Name { get; set; }
 
-		public IConnection ParentConnection { get; set; }
+		public IConnection Connection { get; set; }
 
 		public IEnumerable<IDbCollection> Collections { get; set; }
 

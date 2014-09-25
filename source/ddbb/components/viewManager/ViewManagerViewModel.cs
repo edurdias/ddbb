@@ -1,27 +1,46 @@
 ﻿using System.ComponentModel.Composition;
+using System.Linq;
 using Caliburn.Micro;
 using ddbb.App.Contracts.Events;
+using ddbb.App.Contracts.Services;
 using ddbb.App.Contracts.ViewModels;
 
 namespace ddbb.App.Components.ViewManager
 {
 	[Export(typeof(IViewManagerViewModel))]
-	public class ViewManagerViewModel : Conductor<IContentView>.Collection.OneActive, IViewManagerViewModel, IHandle<ICollectionOpenedEvent>
+	public class ViewManagerViewModel : Conductor<IContentView>.Collection.OneActive, IViewManagerViewModel, IHandle<IContentOpenedEvent>, IHandle<IConnectionEstablishedEvent>
 	{
-		protected override void OnViewLoaded(object view)
+		[ImportingConstructor]
+		public ViewManagerViewModel(IBackend backend, IEventAggregator eventAggregator)
 		{
-			ActivateItem(IoC.Get<ICollectionEditorViewModel>());
-			base.OnViewLoaded(view);
+			Backend = backend;
+			eventAggregator.Subscribe(this);
 		}
 
-		public void Handle(ICollectionOpenedEvent message)
+		public IBackend Backend { get; set; }
+
+		public void Handle(IContentOpenedEvent message)
 		{
-			if (message != null && message.Collection != null)
+			if (message != null && message.Content != null)
 			{
-				var collectionEditor = IoC.Get<ICollectionEditorViewModel>();
-				collectionEditor.Collection = message.Collection;
-				ActivateItem(collectionEditor);
+				var contentView = (IContentView) IoC.GetInstance(message.Type, null);
+				if(contentView != null)
+				{
+					contentView.Content = message.Content;
+					ActivateItem(contentView);
+				}
 			}
+		}
+
+		public void Handle(IConnectionEstablishedEvent message)
+		{
+			var connection = Backend.Connect(message.Connection);
+			var collection = connection.Databases.First().Collections.FirstOrDefault();
+
+			var contentView = (IContentView)IoC.GetInstance(typeof(ICollectionEditorViewModel), null);
+			contentView.Content = collection;
+
+			ActivateItem(contentView);
 		}
 	}
 }

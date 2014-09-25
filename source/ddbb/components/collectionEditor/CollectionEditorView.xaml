@@ -6,8 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-        <Label Content="CollectionEditor" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-
+        <TextBox HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="100"/>
     </Grid>
 </UserControl>

@@ -5,6 +5,6 @@ namespace ddbb.App.Contracts.ViewModels
 {
 	public interface ICollectionEditorViewModel : IContentView
 	{
-		IDbCollection Collection { get; set; }
+
 	}
 }

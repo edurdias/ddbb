@@ -19,7 +19,7 @@ namespace ddbb.Components.ConnectionManager.Tests
 		private Mock<IWindowManager> windowManager;
 		private Mock<IConnectionRepository> repository;
 		private Mock<IEventAggregator> eventAggregator;
-		private Mock<IDocumentDbService> documentDb;
+		private Mock<IBackend> backend;
 
 		[TestInitialize]
 		public void Initialize()
@@ -27,7 +27,7 @@ namespace ddbb.Components.ConnectionManager.Tests
 			windowManager = new Mock<IWindowManager>();
 			repository = new Mock<IConnectionRepository>();
 			eventAggregator = new Mock<IEventAggregator>();
-			documentDb = new Mock<IDocumentDbService>();
+			backend = new Mock<IBackend>();
 		}
 
 		[TestMethod]
@@ -87,9 +87,9 @@ namespace ddbb.Components.ConnectionManager.Tests
 		{
 			var expectedConnection = SetupConnections();
 
-			documentDb
+			backend
 				.Setup(ddb => ddb.Connect(It.IsAny<IConnection>()))
-				.ReturnsAsync(expectedConnection);
+				.Returns(expectedConnection);
 
 			eventAggregator
 				.Setup(e => e.Publish(It.IsAny<object>(), It.IsAny<Action<System.Action>>()))
@@ -236,7 +236,7 @@ namespace ddbb.Components.ConnectionManager.Tests
 
 		private ConnectionManagerViewModel CreateModel()
 		{
-			return new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, documentDb.Object);
+			return new ConnectionManagerViewModel(windowManager.Object, repository.Object, eventAggregator.Object, backend.Object);
 		}
 
 
