@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Caliburn.Micro;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Services;
@@ -9,9 +10,9 @@ namespace ddbb.Components.Backend
 {
 	public class BackendCollection : IDocumentCollection
 	{
-		private ReadOnlyCollection<IStoredProcedure> procedures;
-		private ReadOnlyCollection<ITrigger> triggers;
-		private ReadOnlyCollection<IUserDefinedFunction> functions;
+		private IEnumerable<IStoredProcedure> procedures;
+		private IEnumerable<ITrigger> triggers;
+		private IEnumerable<IUserDefinedFunction> functions;
 
 		public BackendCollection(DocumentCollection collection)
 		{
@@ -40,7 +41,7 @@ namespace ddbb.Components.Backend
 			get
 			{
 				if (procedures == null)
-					procedures = new ReadOnlyCollection<IStoredProcedure>(IoC.Get<IBackend>().GetStoredProcedures(this));
+					procedures = IoC.Get<IBackend>().GetStoredProcedures(this);
 				return procedures;
 			}
 		}
@@ -50,7 +51,7 @@ namespace ddbb.Components.Backend
 			get
 			{
 				if (triggers == null)
-					triggers = new ReadOnlyCollection<ITrigger>(IoC.Get<IBackend>().GetTriggers(this));
+					triggers = IoC.Get<IBackend>().GetTriggers(this);
 				return triggers;
 			}
 		}
@@ -60,7 +61,7 @@ namespace ddbb.Components.Backend
 			get
 			{
 				if (functions == null)
-					functions = new ReadOnlyCollection<IUserDefinedFunction>(IoC.Get<IBackend>().GetUserDefinedFunctions(this));
+					functions = IoC.Get<IBackend>().GetUserDefinedFunctions(this);
 				return functions;
 			}
 		}

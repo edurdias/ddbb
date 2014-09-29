@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-        <TextBox HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="100"/>
+        <TextBox HorizontalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" MinHeight="100" x:Name="Statement" FontFamily="Courier"/>
     </Grid>
 </UserControl>

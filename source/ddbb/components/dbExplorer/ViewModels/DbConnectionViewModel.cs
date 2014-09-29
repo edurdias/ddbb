@@ -13,7 +13,7 @@ namespace ddbb.App.Components.DbExplorer.ViewModels
 		public DbConnectionViewModel(IConnection connection, IBackend service)
 		{
 			_connection = connection;
-			Databases = new BindableCollection<DbDatabaseViewModel>(_connection.Databases.Select(d => new DbDatabaseViewModel(d, service)));
+			Databases = new BindableCollection<DbDatabaseViewModel>();
 		}
 
 		public long Id

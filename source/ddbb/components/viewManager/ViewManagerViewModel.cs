@@ -34,13 +34,14 @@ namespace ddbb.App.Components.ViewManager
 
 		public void Handle(IConnectionEstablishedEvent message)
 		{
-			var connection = Backend.Connect(message.Connection);
-			var collection = connection.Databases.First().Collections.FirstOrDefault();
+			var databases = message.Connection.Databases;
+			var collection = databases.First().Collections.FirstOrDefault();
 
 			var contentView = (IContentView)IoC.GetInstance(typeof(ICollectionEditorViewModel), null);
 			contentView.Content = collection;
 
 			ActivateItem(contentView);
 		}
+
 	}
 }

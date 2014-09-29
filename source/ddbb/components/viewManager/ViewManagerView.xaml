@@ -11,7 +11,8 @@
             <DataTemplate>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding DisplayName}" />
-                    <Button Content="X" cal:Message.Attach="DeactivateItem($dataContext, 'true')" />
+                    <TextBlock Text=" " />
+                    <Button Content="x" cal:Message.Attach="DeactivateItem($dataContext, 'true')" />
                 </StackPanel>
             </DataTemplate>
         </TabControl.ItemTemplate>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows;
 using Caliburn.Micro;
+using ddbb.App.Contracts.Events;
 using ddbb.App.Contracts.ViewModels;
 
 namespace ddbb.App.Components.Shell

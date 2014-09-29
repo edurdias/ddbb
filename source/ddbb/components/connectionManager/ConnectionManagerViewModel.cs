@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using ddbb.App.Components.ConnectionManager.Events;
@@ -16,6 +18,7 @@ namespace ddbb.App.Components.ConnectionManager
 	{
 		private IObservableCollection<IConnection> connections;
 		private IConnection selectedConnection;
+		private bool canConnect = true;
 
 		[ImportingConstructor]
 		public ConnectionManagerViewModel(IWindowManager windowManager, IConnectionRepository repository, IEventAggregator eventAggregator, IBackend backend)
@@ -76,7 +79,13 @@ namespace ddbb.App.Components.ConnectionManager
 
 		public bool CanConnect
 		{
-			get { return SelectedConnection != null; }
+			get { return SelectedConnection != null && canConnect; }
+			private set
+			{
+				canConnect = value;
+				NotifyOfPropertyChange(() => CanConnect);
+				Refresh();
+			}
 		}
 
 		public void Create()
@@ -112,6 +121,8 @@ namespace ddbb.App.Components.ConnectionManager
 		{
 			OpenDialog(new CopyConnectionViewModel(SelectedConnection));
 		}
+
+
 
 		public void Connect()
 		{

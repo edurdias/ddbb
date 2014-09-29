@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ddbb.App.Contracts.Domain;
 
 namespace ddbb.App.Contracts.Services
@@ -13,14 +14,14 @@ namespace ddbb.App.Contracts.Services
 
 		IDocumentCollection CreateCollection(string name, IDatabase database);
 
-		IList<IDatabase> GetDatabases(IConnection connection);
+		IEnumerable<IDatabase> GetDatabases(IConnection connection);
 
-		IList<IDocumentCollection> GetCollections(IDatabase database);
+		IEnumerable<IDocumentCollection> GetCollections(IDatabase database);
 
-		IList<IStoredProcedure> GetStoredProcedures(IDocumentCollection collection);
+		IEnumerable<IStoredProcedure> GetStoredProcedures(IDocumentCollection collection);
 
-		IList<ITrigger> GetTriggers(IDocumentCollection collection);
+		IEnumerable<ITrigger> GetTriggers(IDocumentCollection collection);
 
-		IList<IUserDefinedFunction> GetUserDefinedFunctions(IDocumentCollection collection);
+		IEnumerable<IUserDefinedFunction> GetUserDefinedFunctions(IDocumentCollection collection);
 	}
 }

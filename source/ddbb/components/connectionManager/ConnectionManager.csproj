@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Events\ConnectionCreatedEvent.cs" />
     <Compile Include="Events\ConnectionEstablishedEvent.cs" />
+    <Compile Include="Events\ConnectionInProgressEvent.cs" />
     <Compile Include="Events\ConnectionUpdatedEvent.cs" />
     <Compile Include="ViewConnectionView.xaml.cs">
       <DependentUpon>ViewConnectionView.xaml</DependentUpon>

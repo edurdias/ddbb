@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using ddbb.App.Contracts.Domain;
 using ddbb.App.Contracts.Services;
@@ -28,7 +27,7 @@ namespace ddbb.Components.Backend
 			get
 			{
 				if (collections == null)
-					collections = new ReadOnlyCollection<IDocumentCollection>(IoC.Get<IBackend>().GetCollections(this));
+					collections = IoC.Get<IBackend>().GetCollections(this);
 				return collections;
 			}
 			set { collections = value; }

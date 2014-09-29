@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -30,7 +29,7 @@ namespace ddbb.App.Domain
 			get
 			{
 				if (databases == null)
-					databases = new ReadOnlyCollection<IDatabase>(IoC.Get<IBackend>().GetDatabases(this));
+					databases = IoC.Get<IBackend>().GetDatabases(this);
 				return databases;
 			}
 			set { databases = value; }

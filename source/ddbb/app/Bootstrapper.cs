@@ -13,7 +13,9 @@ namespace ddbb.App
 {
 	public class Bootstrapper : BootstrapperBase
 	{
-		private CompositionContainer container; 
+		private CompositionContainer container;
+		private static readonly WindowManager WindowManager = new WindowManager();
+		private static readonly EventAggregator EventAggregator = new EventAggregator();
 
 		public Bootstrapper()
 		{
@@ -32,8 +34,8 @@ namespace ddbb.App
 					container = new CompositionContainer(catalog);
 
 					var batch = new CompositionBatch();
-					batch.AddExportedValue<IWindowManager>(new WindowManager());
-					batch.AddExportedValue<IEventAggregator>(new EventAggregator());
+					batch.AddExportedValue<IWindowManager>(WindowManager);
+					batch.AddExportedValue<IEventAggregator>(EventAggregator);
 					batch.AddExportedValue(container);
 
 					container.Compose(batch);

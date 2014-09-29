@@ -49,6 +49,7 @@
     <Compile Include="Domain\IStoredProcedure.cs" />
     <Compile Include="Domain\ITrigger.cs" />
     <Compile Include="Domain\IDbUser.cs" />
+    <Compile Include="Events\IConnectionInProgressEvent.cs" />
     <Compile Include="Events\IContentOpenedEvent.cs" />
     <Compile Include="Events\IConnectionCreatedEvent.cs" />
     <Compile Include="Events\IConnectionEstablishedEvent.cs" />
